@@ -1,0 +1,10 @@
+insert into inscriptions (id_camisole) values (1);
+delete from inscriptions;
+
+insert into factures (date_facture) values (sysdate);
+delete from factures;
+
+insert into Fournisseurs
+(entreprise,adresse,ville,code_postal,notes,nom_contact,telephone) 
+values('Canac','300 rue montour','Trois-Rivières','g9b6g9','Fournisseur fiable','Marc Petit','8192392929');
+delete from fournisseurs;

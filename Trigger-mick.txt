@@ -1,0 +1,28 @@
+--Ajouter Champs Prénom Contact
+CREATE OR REPLACE TRIGGER TI_Fournisseurs 
+before insert
+on Fournisseurs
+for each row
+BEGIN
+:New.ID_Fournisseur := Seq_fournisseurs.nextval;
+:New.Entreprise := InitCap(:New.Entreprise);
+:New.Code_Postal := UPPER(:New.Code_Postal);
+:New.Nom_Contact := InitCap(:New.Nom_Contact);
+
+END TI_Fournisseurs;
+/
+CREATE OR REPLACE TRIGGER TI_Factures
+before insert
+on Factures
+for each row
+BEGIN
+:New.ID_Facture := Seq_Factures.nextval;
+END TI_Factures;
+/
+CREATE OR REPLACE TRIGGER TI_Inscriptions
+before insert
+on Inscriptions
+for each row
+BEGIN
+:New.ID_Inscription := Seq_Inscriptions.nextval;
+END TI_Inscriptions;
