@@ -1,0 +1,8 @@
+
+Workspace : WPR0104
+
+Compte de base et schéma (donc utilisable avec apex et sql dev) : PR0104
+Comptes apex : PR0104A et PR0104B
+
+Mot de passe : Xn06nx35
+
