@@ -1,3 +1,5 @@
+--Trigger Insert Table Factures
+--
 CREATE OR REPLACE TRIGGER TI_Factures
 before insert
 on Factures
@@ -6,6 +8,8 @@ BEGIN
 :New.ID_Facture := Seq_Factures.nextval;
 END TI_Factures;
 /
+--Trigger Insert Table Inscriptions
+--
 CREATE OR REPLACE TRIGGER TI_Inscriptions
 before insert
 on Inscriptions
@@ -14,11 +18,24 @@ BEGIN
 :New.ID_Inscription := Seq_Inscriptions.nextval;
 END TI_Inscriptions;
 /
+--Trigger Insert Table Joueurs_Allergies
+--
 CREATE OR REPLACE TRIGGER Ti_Joueurs_Allergies
 BEFORE INSERT
 on Joueurs_Allergies
 for each row
 BEGIN
-:New.ID_Joueur_Allergie := Seq_Joueurs_Allergies;
+:New.ID_Joueur_Allergie := Seq_Joueurs_Allergies.nextval;
 :New.Nom_Allergie := Initcap(:New.Nom_Allergie);
 END Ti_Joueurs_Allergies;
+/
+--Trigger Insert Table Joueurs_Blessures
+--
+CREATE OR REPLACE TRIGGER Ti_Joueurs_Blessures
+BEFORE INSERT
+ON Joueurs_Blessures
+for each row
+BEGIN
+:New.ID_Joueur_Blessure := Seq_Joueurs_Blessures.nextval;
+:New.Nom_Blessure := Initcap(:New.Nom_Blessure);
+END Ti_Joueurs_Blessures;
