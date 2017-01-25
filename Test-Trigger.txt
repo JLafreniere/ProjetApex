@@ -24,3 +24,15 @@ delete from dispos_gyms;
 
 insert into categories (nom)  values ('mini 3-4');
 delete from categories;
+
+insert into ecoles (Nom,adresse,ville,code_postal,contact,role_contact) values
+                   ('Chavigny','3000 rue Chavigny','Trois-Rivières','g8h6r4','bob lamarche','Directeur');
+delete from ecoles;
+
+
+insert into entraineurs (nom,prenom,date_naissance,adresse,ville,code_postal)
+		 values ('Test','Jean',sysdate,'200 boulevard Gene-H Kruger','trois-rivières','j8g8d6');
+delete from entraineurs;
+
+insert into Equipes (nom,type_equipe) values ('Les rafales','Masculin');
+delete from equipes;

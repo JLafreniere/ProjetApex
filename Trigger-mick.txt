@@ -41,6 +41,7 @@ BEGIN
 END Ti_Joueurs_Blessures;
 /
 --Trigger Insert Table Joueurs_Médicaments
+--
 CREATE OR REPLACE TRIGGER Ti_Joueurs_Medicaments
 BEFORE INSERT
 ON Joueurs_Medicaments
@@ -75,6 +76,7 @@ BEGIN
 END TI_Joueurs;
 /
 --Trigger insert Table Categories
+--
 CREATE OR REPLACE TRIGGER TI_Categories
 BEFORE INSERT
 ON Categories
@@ -94,3 +96,122 @@ BEGIN
 :New.ID_Dispo_Gym := Seq_Dispos_Gyms.nextval;
 :New.Jour := Initcap(:New.Jour);
 END TI_Dispos_Gyms;
+/
+--Trigger Insert Table Ecoles
+--
+CREATE OR REPLACE TRIGGER TI_Ecoles
+BEFORE INSERT
+ON Ecoles
+FOR EACH ROW
+BEGIN
+:New.ID_Ecole := Seq_Ecoles.nextval;
+:New.Nom := Initcap(:New.nom);
+:New.Adresse := Initcap(:New.Adresse);
+:New.Ville := Initcap(:New.Ville);
+:New.Code_Postal := UPPER(:New.Code_Postal);
+:New.Contact := Initcap(:New.Contact);
+:New.Role_Contact := Initcap(:New.Role_Contact);
+END TI_Ecoles;
+/
+--Trigger insert Table entraineurs
+--
+CREATE OR REPLACE TRIGGER TI_Entraineurs
+BEFORE INSERT 
+ON Entraineurs
+FOR EACH ROW
+BEGIN
+:New.ID_Entraineur := Seq_Entraineurs.nextval;
+:New.Nom := Initcap(:New.Nom);
+:New.Prenom := Initcap(:New.Prenom);
+:New.Adresse := Initcap(:New.Adresse);
+:New.Ville := Initcap(:New.Ville);
+:New.Code_Postal := UPPER(:New.Code_Postal);
+END TI_Entraineurs;
+/
+--Trigger insert Table Equipes
+--
+CREATE OR REPLACE TRIGGER TI_Equipes
+BEFORE INSERT
+ON Equipes
+FOR EACH ROW
+BEGIN
+:New.ID_Equipe := Seq_Equipe.nextval;
+:New.Nom := Initcap(:New.Nom);
+:New.Type_Equipe := Initcap(:New.Type_Equipe);
+END TI_Equipes;
+/
+--Trigger insert Table Postes_Budgetaires
+--
+CREATE OR REPLACE TRIGGER TI_Postes_Budgetaires
+BEFORE INSERT
+ON Postes_Budgeraires
+FOR EACH ROW
+BEGIN
+:New.ID_Poste := Seq_Postes_Budgetaires;
+:New.Nom_Poste := Initcap(:New.Nom_Poste);
+:New.Depense := Upper(:New.Depense);
+END TI_Postes_Budgetaires;
+/
+--Trigger insert Table Prets_Equipements
+--
+CREATE OR REPLACE TRIGGER TI_Prets_Equipements
+BEFORE INSERT
+ON Prets_Equipements
+FOR EACH ROW
+BEGIN
+:New.ID_Pret := Seq_Prets_Equipements.nextval;
+END TI_Prets_Equipements;
+/
+--Trigger insert Table Recipiendaires 
+--
+CREATE OR REPLACE TRIGGER TI_Recipiendaires
+BEFORE INSERT
+ON Recipiendaires
+for each row
+BEGIN
+:New.ID_Recipiendaire := Seq_Recipiendaires.nextval;
+:New.Titre := Initcap(:New.Titre);
+END TI_Recipiendaires;
+/
+--Trigger insert Table Recus_Impots
+--
+CREATE OR REPLACE TRIGGER TI_Recus_Impots
+BEFORE INSERT
+ON Recus_Impots
+for each row
+BEGIN
+:New.ID_Recu := Seq_Recus_Impots.nextval;
+END TI_Recus_Impots;
+/
+--Trigger insert Table Shorts
+--
+CREATE OR REPLACE TRIGGER TI_Tournois
+BEFORE INSERT
+ON Tournois
+for each row
+BEGIN
+:New.ID_Tournoi := Seq_Tournois.nextval;
+:New.Ville := Initcap(:New.Ville);
+END TI_Tournois;
+/
+--Trigger insert Table Tournois
+--
+CREATE OR REPLACE TRIGGER TI_Tournois
+BEFORE INSERT
+ON Tournois
+for each row
+BEGIN
+:New.ID_Tournoi := Seq_Tournois.nextval;
+:New.Ville := Initcap(:New.Ville);
+END TI_Tournois;
+/
+--Trigger insert Tabke Transactions
+--
+CREATE OR REPLACE TRIGGER TI_Tournois
+BEFORE INSERT
+ON Tournois
+for each row
+BEGIN
+:New.ID_Tournoi := Seq_Tournois.nextval;
+:New.Ville := Initcap(:New.Ville);
+END TI_Tournois;
