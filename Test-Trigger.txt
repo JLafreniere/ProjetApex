@@ -3,3 +3,14 @@ delete from inscriptions;
 
 insert into factures (date_facture) values (sysdate);
 delete from factures;
+
+insert into joueurs_allergies(Nom_allergie) values ('Arachides');
+delete from joueurs_allergies;
+
+insert into joueurs_blessures(Nom_blessure) values ('Fracture du coude');
+delete from joueurs_blessures;
+
+insert into Joueurs_Medicaments(Nom_medicament) values ('Morphine');
+delete from Joueurs_medicaments;
+
+

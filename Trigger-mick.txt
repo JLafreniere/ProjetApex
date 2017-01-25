@@ -39,3 +39,14 @@ BEGIN
 :New.ID_Joueur_Blessure := Seq_Joueurs_Blessures.nextval;
 :New.Nom_Blessure := Initcap(:New.Nom_Blessure);
 END Ti_Joueurs_Blessures;
+/
+--Trigger Insert Table Joueurs_Médicaments
+CREATE OR REPLACE TRIGGER Ti_Joueurs_Medicaments
+BEFORE INSERT
+ON Joueurs_Medicaments
+FOR EACH ROW
+BEGIN
+:New.ID_Joueur_Medicament := Seq_Joueurs_Medicaments.nextval;
+:New.Nom_Medicament := InitCap(:New.Nom_Medicament);
+:New.Posologie := InitCap(:New.Posologie);
+END Ti_Joueurs_Medicaments;
