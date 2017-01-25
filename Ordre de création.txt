@@ -1,0 +1,32 @@
+
+Camisole
+Short
+Joueurs
+Categorie
+Ecole							RONDE 1
+Poste_Budgetaire
+Facture
+Tournoi
+Entraineur
+
+
+Transaction -> OPT Facture
+Gym -> Ecole
+Equipe -> Ecole, Categorie				RONDE 2
+Joueurs_Blessures -> Joueurs
+Joueurs_Allergies -> Joueurs
+Joueurs_Medicaments -> Joueurs
+Personnes -> Joueurs
+Pret_Equipement -> Camisole, Short, Joueurs
+Recus_Impot -> Personnes
+Inscription -> Joueurs, Equipe
+Dispos_Entraineur -> Entraineur
+
+Equipe_Tournoir -> Equipe, Tournoi, Transaction
+Pratique -> Equipe, Gym
+Dispos_Gym -> Gym					RONDE 3
+Equipe_Entraineur-> Equipe, Entraineur
+
+Recipiendaire -> Inscription				RONDE 4
+
+
