@@ -13,4 +13,14 @@ delete from joueurs_blessures;
 insert into Joueurs_Medicaments(Nom_medicament) values ('Morphine');
 delete from Joueurs_medicaments;
 
+insert into joueurs(Nom) values ('Tremblay');
+delete from joueurs;
 
+insert into Camisoles(No_camisole) values (2);
+delete from camisoles;
+
+insert into dispos_Gyms (Jour) values ('lundi');
+delete from dispos_gyms;
+
+insert into categories (nom)  values ('mini 3-4');
+delete from categories;
