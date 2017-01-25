@@ -1,0 +1,311 @@
+
+drop table Recipiendaires cascade constraint;
+drop table Joueurs cascade constraint;
+drop table Equipes_Tournois cascade constraint;
+drop table Shorts cascade constraint;
+drop table Camisoles cascade constraint;
+drop table Inscriptions cascade constraint;
+drop table Transactions cascade constraint;
+drop table Factures cascade constraint;
+
+DROP SEQUENCE Seq_Recipiendaires;
+DROP SEQUENCE Seq_Joueurs;
+DROP SEQUENCE Seq_Shorts;
+DROP SEQUENCE Seq_Camisoles;
+DROP SEQUENCE Seq_Inscriptions;
+DROP SEQUENCE Seq_Transactions;
+DROP SEQUENCE Seq_Factures;
+
+CREATE SEQUENCE Seq_Recipiendaires;
+CREATE SEQUENCE Seq_Joueurs;
+CREATE SEQUENCE Seq_Shorts;
+CREATE SEQUENCE Seq_Camisoles;
+CREATE SEQUENCE Seq_Inscriptions;
+CREATE SEQUENCE Seq_Transactions;
+CREATE SEQUENCE Seq_Factures;
+
+
+CREATE TABLE Recipiendaires (
+ID_Recipiendaire number(5) primary key,
+Titre varchar2(50),
+Annee number(4),
+ID_Inscription number(5)
+);
+
+CREATE TABLE Joueurs (
+ID_Joueur number(5) primary key,
+Nom varchar2(50),
+Prenom varchar2(50),
+Adresse varchar2(100),
+Ville varchar2(75),
+Code_Postal char(7),
+Date_naissance date,
+ID_Personne_Contact number(5),
+ID_Medecin_Famille number(5),
+Assurance_Maladie char(12),
+Groupe_Sanguin varchar(3),
+Diabete char(1),
+Epilepsie char(1),
+Asthme_Pompe char(1),
+Auto_Administration char(1),
+Infos_Sante_Supplementaires varchar2(255)
+);
+
+CREATE TABLE Equipes_Tournois (
+ID_Equipe number(5),
+ID_Tournoi number(5),
+CONSTRAINT pk_EQUIPES_TOURNOIS primary key (ID_Equipe,ID_Tournoi)
+);
+
+CREATE TABLE Shorts (
+ID_Short number(5) primary key,
+Taille varchar2(30)
+);
+
+CREATE TABLE Camisoles (
+ID_Camisole number(5) primary key,
+No_Camisole number(2),
+Categorie_Age varchar2(10),
+Sexe char(1),
+Couleur varchar2(50),
+Taille varchar2(30)
+);
+
+CREATE TABLE Inscriptions (
+ID_Inscription number(5) primary key,
+ID_Camisole number(5),
+ID_Equipe number(5),
+ID_Short number(5),
+ID_Joueur number(5)
+);
+
+CREATE TABLE Transactions (
+ID_Transaction number(5) primary key,
+Montant number(5,2),
+Nom_Transaction varchar2(50),
+Client varchar2(50),
+Date_Transaction date,
+paye char(1),
+Poste_Budgetaire varchar2(50)
+);
+
+CREATE TABLE Factures (
+ID_Facture number(5) primary key,
+Date_Facture date,
+Photocopie blob,
+Mime_Type varchar2(255),
+File_Name varchar2(255)
+);
+ ____________________
+ 
+ Drop Table Fournisseurs;
+Drop Table Factures;
+Drop Table Inscriptions;
+Drop Table Parents;
+Drop Table Parents_Joueurs;
+Drop Table Joueurs_Medicaments;
+Drop Table Joueurs_Blessures;
+Drop Table Joueurs_Allergies;
+
+
+
+Drop Sequence Seq_Fournisseurs;
+Drop Sequence Seq_Factures;
+Drop Sequence Seq_Inscriptions;
+Drop Sequence Seq_Parents;
+Drop Sequence Seq_Joueurs_Medicaments;
+Drop Sequence Seq_Joueurs_Blessures;
+Drop Sequence Seq_Joueurs_Allergies;
+
+Create sequence Seq_Fournisseurs;
+Create sequence Seq_Factures;
+Create sequence Seq_Inscriptions;
+Create sequence Seq_Parents;
+Create sequence Seq_Joueurs_Medicaments;
+Create sequence Seq_Joueurs_Blessures;
+Create sequence Seq_Joueurs_Allergies;
+
+Create table Fournisseurs(
+ID_Fournisseur number(5) primary key,
+Entreprise varchar2(100),
+Adresse varchar2(100),
+Ville varchar2(75), 
+Code_Postal char(7),
+Notes varchar2(300),
+Nom_Contact varchar2(50),
+Telephone char(10)
+);
+
+Create table Factures(
+ID_Facture number(5) primary key,
+Date_Facture date,
+Fichier Blob,
+Mimetype varchar2(255),
+Filename varchar2(255),
+ID_Transaction number(5)
+);
+
+Create Table Inscriptions(
+ID_Inscription number(5) primary key,
+Camisole number(5),
+Equipe number(5),
+Short number(5),
+ID_Joueur number(5)
+);
+
+Create Table Parents(
+ID_Parent number(5) primary key,
+ID_Joueur number(5),
+Nom varchar2(50),
+Prenom varchar2(50),
+Adresse varchar2(100),
+Ville varchar2(75),
+Code_Postal char(7),
+Telephone char(10),
+Cell char(10)
+);
+
+Create Table Parents_Joueurs(
+ID_Parent number(5),
+ID_Joueur number(5),
+Lien varchar2(50),
+Contact_Urgence varchar2(50),
+Telephone_Urgence char(10),
+CONSTRAINT pk_Parents_Joueurs PRIMARY KEY (ID_Parent,ID_Joueur)
+);
+
+Create Table Joueurs_Medicaments(
+ID_Joueur_Medicament number(5) primary key,
+Nom_Medicament varchar2(75),
+Posologie varchar2(175),
+ID_Joueur number(5)
+);
+
+Create Table Joueurs_Blessures(
+ID_Joueur_Blessure number(5) primary key,
+Nom_Blessure varchar2(75),
+Date_Blessure date,
+ID_Joueur number(5)
+);
+
+Create Table Joueurs_Allergies(
+ID_Joueur_Allergie number(5) primary key,
+Nom_Allergie varchar2(75),
+ID_Joueur number(5)
+);
+
+
+Create Table Recus_Impot(
+ID_Recu number(5),
+ID_Parent number(5),
+montant number(5,2)
+);
+
+Create table Prets_Equipement(
+ID_Pret number(5),
+Date_Pret date,
+ID_Camisole number(5),
+ID_Short number(5),
+Date_Remise date,
+Equipement_remis date
+);
+
+
+
+
+
+---------- CHRISTOPHE
+
+
+-- drop table
+drop table Dispo_Gyms;
+drop table Equipes_Entraineurs;
+drop table Gyms;
+drop table Equipes;
+drop table Ecoles;
+drop table Entraineurs;
+drop table categories;
+drop table Medecins;
+
+--table categorie
+
+
+create table Categories(
+ID_Categorie number(5) primary key,
+nom varchar2(50)
+);
+--table Ecoles
+
+
+create table Ecoles(
+ID_Ecole number(5) primary key,
+nom varchar2(100),
+adresse varchar2(100),
+ville varchar2(75),
+Code_Postal char(7),
+Telephone char(10),
+contact varchar2(100),
+Role varchar2(50),
+Cell_Contact char(10)
+);
+--table Equipes
+
+
+create table Equipes(
+ID_Equipe number(5) primary key,
+Nom varchar2(25),
+ID_Categorie number(5) references Categories(ID_Categorie),
+ID_Ecole number(5) references Ecoles(ID_Ecole),
+type varchar2(25)
+);
+
+--table Entraineurs
+
+create table Entraineurs(
+ID_Entraineur number(5) primary key,
+Nom varchar2(50),
+Prenom varchar2(50),
+Date_Naissance date,
+Debut_Service date,
+Fin_Service date,
+Telephone char(10),
+Adresse varchar2(100),
+Ville varchar2(75),
+Code_Postal char(7)
+);
+
+--table entraineur equipe
+
+create table Equipes_Entraineurs(
+ID_Equipe number(5) references Equipes(ID_Equipe),
+ID_Entraineur number(5) references Entraineurs(ID_Entraineur),
+Type_Entraineur varchar2(50),
+primary key(ID_Equipe, ID_Entraineur)
+);
+--table gym
+
+
+create table Gyms(
+ID_Gym number(5) primary key,
+ID_Ecole number(5) references Ecoles(ID_Ecole),
+Nom varchar2(100)
+);
+
+--table dispo gym
+
+create table Dispo_Gyms(
+ID_Dispo_Gym number(5) primary key,
+ID_Gym number(5) references Gyms(ID_Gym),
+jour varchar2(8),
+Debut number(4,2),
+fin number(4,2)
+);
+
+--table Medecins
+
+create table Medecins(
+ID_Medecin number(5) primary key,
+Nom varchar2(50),
+Prenom varchar2(50),
+Telephone char(10)
+);
