@@ -50,3 +50,47 @@ BEGIN
 :New.Nom_Medicament := InitCap(:New.Nom_Medicament);
 :New.Posologie := InitCap(:New.Posologie);
 END Ti_Joueurs_Medicaments;
+/
+--Trigger insert Table Camisoles
+--
+CREATE OR REPLACE TRIGGER TI_Camisoles
+BEFORE INSERT
+ON Camisoles
+FOR EACH ROW
+BEGIN
+:New.ID_Camisole := Seq_Camisoles.nextval;
+:New.Sexe := UPPER(:New.Sexe);
+:New.Couleur := Initcap(:New.Couleur);
+:New.Taille := Initcap(:New.Taille);
+END TI_Camisoles;
+/
+--Trigger insert Table Joueurs
+--
+CREATE OR REPLACE TRIGGER TI_Joueurs
+BEFORE INSERT
+ON Joueurs
+FOR EACH ROW
+BEGIN
+:New.ID_Joueur := Seq_Joueurs.nextval;
+END TI_Joueurs;
+/
+--Trigger insert Table Categories
+CREATE OR REPLACE TRIGGER TI_Categories
+BEFORE INSERT
+ON Categories
+FOR EACH ROW
+BEGIN
+:New.ID_Categorie := Seq_Categories.nextval;
+:New.Nom := Initcap(:New.Nom);
+END TI_Categories;  
+/
+--Trigger insert Table dispos_gyms
+--
+CREATE OR REPLACE TRIGGER TI_Dispos_Gyms
+BEFORE INSERT
+ON Dispos_Gyms
+FOR EACH ROW
+BEGIN
+:New.ID_Dispo_Gym := Seq_Dispos_Gyms.nextval;
+:New.Jour := Initcap(:New.Jour);
+END TI_Dispos_Gyms;
