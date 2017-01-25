@@ -1,0 +1,246 @@
+CREATE TABLE Camisoles (
+ID_Camisole number(5) primary key,
+No_Camisole number(2),
+Categorie_Age varchar2(10),
+Sexe char(1),
+Couleur varchar2(50),
+Taille varchar2(30)
+);
+
+CREATE TABLE Shorts (
+ID_Short number(5) primary key,
+Taille varchar2(30)
+);
+
+
+CREATE TABLE Joueurs (
+ID_Joueur number(5) primary key,
+Nom varchar2(50),
+Prenom varchar2(50),
+Adresse varchar2(100),
+Ville varchar2(75),
+Code_Postal char(7),
+Date_naissance date,
+ID_Personne_Contact number(5),
+ID_Medecin_Famille number(5),
+Assurance_Maladie char(12),
+Groupe_Sanguin varchar(3),
+Diabete char(1),
+Epilepsie char(1),
+Asthme_Pompe char(1),
+Auto_Administration char(1),
+Infos_Sante_Supplementaires varchar2(255)
+);
+
+
+create table Categories(
+ID_Categorie number(5) primary key,
+nom varchar2(50)
+);
+
+create table Ecoles(
+ID_Ecole number(5) primary key,
+nom varchar2(100),
+adresse varchar2(100),
+ville varchar2(75),
+Code_Postal char(7),
+Telephone char(10),
+contact varchar2(100),
+Role_Contact varchar2(50),
+Cell_Contact char(10)
+);
+
+Create Table Postes_Budgetaire(
+ID_Poste number(5) primary key,
+Nom_Poste varchar2(75),
+Depense char(1)
+);
+
+
+CREATE TABLE Factures (
+ID_Facture number(5) primary key,
+Date_Facture date,
+Photocopie blob,
+Mime_Type varchar2(255),
+File_Name varchar2(255)
+);
+
+Create Table Tournois(
+ID_Tournoi number(5),
+Ville varchar2(75),
+Date_Debut date,
+Date_Fin Date,
+Montant_Inscription number(5,2)
+);
+
+create table Entraineurs(
+ID_Entraineur number(5) primary key,
+Nom varchar2(50),
+Prenom varchar2(50),
+Date_Naissance date,
+Debut_Service date,
+Fin_Service date,
+Telephone char(10),
+Adresse varchar2(100),
+Ville varchar2(75),
+Code_Postal char(7)
+);
+
+----- RELATION DEGRÉ 1 ---------------
+
+CREATE TABLE Transactions (
+ID_Transaction number(5) primary key,
+Montant number(5,2),
+Nom_Transaction varchar2(50),
+Client varchar2(50),
+Date_Transaction date,
+paye char(1),
+Poste_Budgetaire varchar2(50),
+ID_Facture number(5), -- OPTIONNEL
+CONSTRAINT FK_ID_FACTURE -- 
+    FOREIGN KEY (ID_Facture)
+    REFERENCES Factures (ID_Facture)
+);
+
+
+create table Gyms(
+ID_Gym number(5) primary key,
+ID_Ecole number(5),
+Nom varchar2(100),
+CONSTRAINT FK_ID_ECOLE -- 
+    FOREIGN KEY (ID_Ecole)
+    REFERENCES Ecoles (ID_Ecole)
+);
+
+create table Equipes(
+ID_Equipe number(5) primary key,
+Nom varchar2(25),
+ID_Categorie number(5),
+ID_Ecole number(5),
+type varchar2(25),
+CONSTRAINT FK_ID_CATEGORIES_EQUIPES -- 
+    FOREIGN KEY (ID_Categorie)
+    REFERENCES Categories (ID_Categorie),
+    CONSTRAINT FK_ID_ECOLE_EQUIPE -- 
+    FOREIGN KEY (ID_Ecole)
+    REFERENCES Ecoles (ID_Ecole)
+);
+
+Create Table Joueurs_Medicaments(
+ID_Joueur_Medicament number(5) primary key,
+Nom_Medicament varchar2(75),
+Posologie varchar2(175),
+ID_Joueur number(5),
+CONSTRAINT FK_ID_JOUEURS_MEDICAMENTS -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+Create Table Joueurs_Blessures(
+ID_Joueur_Blessure number(5) primary key,
+Nom_Blessure varchar2(75),
+Date_Blessure date,
+ID_Joueur number(5),
+CONSTRAINT FK_ID_JOUEURS_BLESSURES -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+Create Table Joueurs_Allergies(
+ID_Joueur_Allergie number(5) primary key,
+Nom_Allergie varchar2(75),
+ID_Joueur number(5),
+CONSTRAINT FK_ID_JOUEURS_ALLERGIES -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+Create Table Personnes(
+ID_Personne number(5),
+Lien varchar2(80),
+Nom varchar2(50),
+Prenom varchar2(50),
+Telephone1 char(10),
+Telephone2 char(10),
+NAS char(9),
+Adresse varchar2(100),
+Ville varchar2(50),
+Code_Postal char(6),
+Eligible_Impot char(1),
+Nom_Contact_Urgence varchar2(50),
+Telephone_Urgence char(10),
+ID_Joueur number(5),
+CONSTRAINT FK_ID_JOUEURS_PERSONNES -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+Create Table Prets_Equipements(
+ID_Pret number(5),
+ID_Camisole number(5),
+ID_Short number(5),
+Date_Remise_Prevue date,
+Date_Reception date,
+ID_Joueur number(5),
+CONSTRAINT FK_ID_CAMISOLE_PRETS -- 
+    FOREIGN KEY (ID_Camisole)
+    REFERENCES Camisoles (ID_Camisole),
+    CONSTRAINT FK_ID_SHORTS_PRETS -- 
+    FOREIGN KEY (ID_Short)
+    REFERENCES Shorts (ID_Short),
+    CONSTRAINT FK_ID_JOUEURS_PRETS -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+Create Table Recus_Impot(
+ID_Recu number(5),
+ID_Personne number(5),
+Montant number(5,2),
+    CONSTRAINT FK_ID_PERSONNE_RECUS -- 
+    FOREIGN KEY (ID_Personne)
+    REFERENCES Personnes (ID_Personne)
+);
+
+Create Table Inscriptions(
+ID_Inscription number(5),
+ID_Equipe number(5),
+ID_Joueur number(5),
+Saison
+ID_Transaction number(5),
+    CONSTRAINT FK_ID_JOUEURS_INSCRIPTIONS -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur),
+    
+    CONSTRAINT FK_ID_EQUIPES_INSCRIPTIONS -- 
+    FOREIGN KEY (ID_EQUIPE)
+    REFERENCES Equipes (ID_Equipe),
+    
+    CONSTRAINT FK_ID_Transaction_INSCRIPTIONS -- 
+    FOREIGN KEY (ID_Transaction)
+    REFERENCES Transactions (ID_Transaction)
+
+);
+
+Create Table Dispos_Entraineurs(
+ID_Dispo_Entraineur number(5),
+Jour number(1),
+Debut number(2,2),
+Fin number(2,2)
+ID_Entraineur number(5),
+    CONSTRAINT FK_ID_ENTRAINEUR_DISPOS -- 
+    FOREIGN KEY (ID_Entraineur)
+    REFERENCES Entraineurs (ID_Entraineur)
+);
+
+---------------------------- DEGRÉ 2------------------------
+
+
+Equipe_Tournoir -> Equipe, Tournoi, Transaction
+Pratique -> Equipe, Gym
+Dispos_Gym -> Gym					RONDE 3
+Equipe_Entraineur-> Equipe, Entraineur
+
+Recipiendaire -> Inscription				RONDE 4
+
+
