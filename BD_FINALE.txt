@@ -63,6 +63,9 @@ Create Sequence Seq_Shorts Maxvalue 99999 nocycle;
 Create Sequence Seq_Tournois Maxvalue 99999 nocycle;
 Create Sequence Seq_Transactions Maxvalue 99999 nocycle;
 
+
+
+
 ------------------------------------------
 ------------- Drop Table -----------------
 ------------------------------------------
@@ -74,7 +77,7 @@ Drop Table Dispos_Gym Cascade Constraint;
 Drop Table Dispos_Entraineur Cascade Constraint;
 Drop Table Ecoles Cascade Constraint;
 Drop Table Entraineurs Cascade Constraint;
-Drop Table Equipes_Tournoi Cascade Constraint;
+Drop Table Equipes_Tournois Cascade Constraint;
 Drop Table Equipes Cascade Constraint;
 Drop Table Equipes_Entraineurs Cascade Constraint;
 Drop Table Factures Cascade Constraint;
