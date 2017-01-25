@@ -13,3 +13,12 @@ for each row
 BEGIN
 :New.ID_Inscription := Seq_Inscriptions.nextval;
 END TI_Inscriptions;
+/
+CREATE OR REPLACE TRIGGER Ti_Joueurs_Allergies
+BEFORE INSERT
+on Joueurs_Allergies
+for each row
+BEGIN
+:New.ID_Joueur_Allergie := Seq_Joueurs_Allergies;
+:New.Nom_Allergie := Initcap(:New.Nom_Allergie);
+END Ti_Joueurs_Allergies;
