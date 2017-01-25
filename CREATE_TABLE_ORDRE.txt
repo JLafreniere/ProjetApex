@@ -236,6 +236,7 @@ ID_Entraineur number(5),
 ---------------------------- DEGRÉ 2------------------------
 
 
+
 Equipe_Tournoir -> Equipe, Tournoi, Transaction
 Pratique -> Equipe, Gym
 Dispos_Gym -> Gym					RONDE 3
