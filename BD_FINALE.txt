@@ -1,58 +1,74 @@
-Create Sequence Seq_Camisoles Maxvalue 99999 nocycle;
-Create Sequence Seq_Categories Maxvalue 99999 nocycle;
-Create Sequence Seq_Comptes_Utilisateur Maxvalue 99999 nocycle;
-Create Sequence Seq_Dispos_Gym Maxvalue 99999 nocycle;
-Create Sequence Seq_Dispos_Entraineur Maxvalue 99999 nocycle;
-Create Sequence Seq_Ecoles Maxvalue 99999 nocycle;
-Create Sequence Seq_Entraineurs Maxvalue 99999 nocycle;
-Create Sequence Seq_Equipes_Tournoi Maxvalue 99999 nocycle;
-Create Sequence Seq_Equipes Maxvalue 99999 nocycle;
-Create Sequence Seq_Equipes_Entraineurs;
-Create Sequence Seq_Factures Maxvalue 99999 nocycle;
-Create Sequence Seq_Gyms Maxvalue 99999 nocycle;
-Create Sequence Seq_Inscriptions Maxvalue 99999 nocycle;
-Create Sequence Seq_Inventaire Maxvalue 99999 nocycle;
-Create Sequence Seq_Joueurs_Medicaments Maxvalue 99999 nocycle;
-Create Sequence Seq_Joueurs Maxvalue 99999 nocycle;
-Create Sequence Seq_Joueurs_Allergies Maxvalue 99999 nocycle;
-Create Sequence Seq_Joueurs_Blessures Maxvalue 99999 nocycle;
-Create Sequence Seq_Personnes Maxvalue 99999 nocycle; 
-Create Sequence Seq_Postes_Budgetaire Maxvalue 99999 nocycle;
-Create Sequence Seq_Pratiques Maxvalue 99999 nocycle;
-Create Sequence Seq_Prets_Equipement Maxvalue 99999 nocycle;
-Create Sequence Seq_Recipiendaires Maxvalue 99999 nocycle;
-Create Sequence Seq_Recus_Impot Maxvalue 99999 nocycle;
-Create Sequence Seq_Shorts Maxvalue 99999 nocycle;
-Create Sequence Seq_Tournois Maxvalue 99999 nocycle;
-Create Sequence Seq_Transactions Maxvalue 99999 nocycle;
+------------------------------------------
+----------- Drop Sequence ----------------
+------------------------------------------
 
-Drop Sequence Seq_Camisole;
-Drop Sequence Seq_Categorie;
-Drop Sequence Seq_Comptes_Utilisateur; 
-Drop Sequence Seq_Dispos_Gym; 
-Drop Sequence Seq_Dispos_Entraineur; 
+Drop Sequence Seq_Camisoles;
+Drop Sequence Seq_Categories;
+Drop Sequence Seq_Comptes_Utilisateurs; 
+Drop Sequence Seq_Dispos_Gyms; 
+Drop Sequence Seq_Dispos_Entraineurs; 
 Drop Sequence Seq_Ecoles; 
 Drop Sequence Seq_Entraineurs;
-Drop Sequence Seq_Equipes_Tournoi;
+Drop Sequence Seq_Equipes_Tournois;
 Drop Sequence Seq_Equipes;
 Drop Sequence Seq_Equipes_Entraineurs;
 Drop Sequence Seq_Factures; 
 Drop Sequence Seq_Gyms;
 Drop Sequence Seq_Inscriptions;
-Drop Sequence Seq_Inventaire;
+Drop Sequence Seq_Inventaires;
 Drop Sequence Seq_Joueurs_Medicaments;
 Drop Sequence Seq_Joueurs;
 Drop Sequence Seq_Joueurs_Allergies;
 Drop Sequence Seq_Joueurs_Blessures;
 Drop Sequence Seq_Personnes;
-Drop Sequence Seq_Postes_Budgetaire;
+Drop Sequence Seq_Postes_Budgetaires;
 Drop Sequence Seq_Pratiques;
-Drop Sequence Seq_Prets_Equipement;
+Drop Sequence Seq_Prets_Equipements;
 Drop Sequence Seq_Recipiendaires;
-Drop Sequence Seq_Recus_Impot;
+Drop Sequence Seq_Recus_Impots;
 Drop Sequence Seq_Shorts;
 Drop Sequence Seq_Tournois;
 Drop Sequence Seq_Transactions;
+
+
+------------------------------------------
+------------ Create Table ----------------
+------------------------------------------
+
+Create Sequence Seq_Camisoles Maxvalue 99999 nocycle;
+Create Sequence Seq_Categories Maxvalue 99999 nocycle;
+Create Sequence Seq_Comptes_Utilisateurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Dispos_Gyms Maxvalue 99999 nocycle;
+Create Sequence Seq_Dispos_Entraineurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Ecoles Maxvalue 99999 nocycle;
+Create Sequence Seq_Entraineurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Equipes_Tournois Maxvalue 99999 nocycle;
+Create Sequence Seq_Equipes Maxvalue 99999 nocycle;
+Create Sequence Seq_Equipes_Entraineurs;
+Create Sequence Seq_Factures Maxvalue 99999 nocycle;
+Create Sequence Seq_Gyms Maxvalue 99999 nocycle;
+Create Sequence Seq_Inscriptions Maxvalue 99999 nocycle;
+Create Sequence Seq_Inventaires Maxvalue 99999 nocycle;
+Create Sequence Seq_Joueurs_Medicaments Maxvalue 99999 nocycle;
+Create Sequence Seq_Joueurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Joueurs_Allergies Maxvalue 99999 nocycle;
+Create Sequence Seq_Joueurs_Blessures Maxvalue 99999 nocycle;
+Create Sequence Seq_Personnes Maxvalue 99999 nocycle; 
+Create Sequence Seq_Postes_Budgetaires Maxvalue 99999 nocycle;
+Create Sequence Seq_Pratiques Maxvalue 99999 nocycle;
+Create Sequence Seq_Prets_Equipements Maxvalue 99999 nocycle;
+Create Sequence Seq_Recipiendaires Maxvalue 99999 nocycle;
+Create Sequence Seq_Recus_Impots Maxvalue 99999 nocycle;
+Create Sequence Seq_Shorts Maxvalue 99999 nocycle;
+Create Sequence Seq_Tournois Maxvalue 99999 nocycle;
+Create Sequence Seq_Transactions Maxvalue 99999 nocycle;
+
+
+
+
+------------------------------------------
+------------- Drop Table -----------------
+------------------------------------------
 
 Drop Table Camisoles Cascade Constraint;
 Drop Table Categories Cascade Constraint;
@@ -61,7 +77,7 @@ Drop Table Dispos_Gym Cascade Constraint;
 Drop Table Dispos_Entraineur Cascade Constraint;
 Drop Table Ecoles Cascade Constraint;
 Drop Table Entraineurs Cascade Constraint;
-Drop Table Equipes_Tournoi Cascade Constraint;
+Drop Table Equipes_Tournois Cascade Constraint;
 Drop Table Equipes Cascade Constraint;
 Drop Table Equipes_Entraineurs Cascade Constraint;
 Drop Table Factures Cascade Constraint;
