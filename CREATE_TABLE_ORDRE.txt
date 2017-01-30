@@ -202,6 +202,21 @@ Montant number(5,2),
     REFERENCES Personnes (ID_Personne)
 );
 
+
+
+Create Table Dispos_Entraineurs(
+ID_Dispo_Entraineur number(5),
+Jour number(1),
+Debut number(2,2),
+Fin number(2,2)
+ID_Entraineur number(5),
+    CONSTRAINT FK_ID_ENTRAINEUR_DISPOS -- 
+    FOREIGN KEY (ID_Entraineur)
+    REFERENCES Entraineurs (ID_Entraineur)
+);
+
+---------------------------- DEGRÉ 2------------------------
+
 Create Table Inscriptions(
 ID_Inscription number(5),
 ID_Equipe number(5),
@@ -221,21 +236,6 @@ ID_Transaction number(5),
     REFERENCES Transactions (ID_Transaction)
 
 );
-
-Create Table Dispos_Entraineurs(
-ID_Dispo_Entraineur number(5),
-Jour number(1),
-Debut number(2,2),
-Fin number(2,2)
-ID_Entraineur number(5),
-    CONSTRAINT FK_ID_ENTRAINEUR_DISPOS -- 
-    FOREIGN KEY (ID_Entraineur)
-    REFERENCES Entraineurs (ID_Entraineur)
-);
-
----------------------------- DEGRÉ 2------------------------
-
-
 
 Equipe_Tournoir -> Equipe, Tournoi, Transaction
 Pratique -> Equipe, Gym
