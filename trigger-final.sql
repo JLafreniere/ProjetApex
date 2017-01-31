@@ -1,7 +1,8 @@
+--Equipe entraineur
+
 ---------------------------------
 ------- Trigger Niveau 0 --------
 ---------------------------------
-
 
 --Trigger insert Table Camisoles
 --
@@ -17,8 +18,6 @@ BEGIN
 END TI_Camisoles;
 /
 
-
-
 --Trigger insert Table Shorts
 --
 CREATE OR REPLACE TRIGGER TI_Shorts
@@ -30,8 +29,6 @@ BEGIN
 :New.Taille := Initcap(:New.Taille);
 END TI_Shorts;
 /
-
-
 
 --Trigger insert Table Joueurs
 --
@@ -52,7 +49,7 @@ BEGIN
 :New.Epilepsie := Upper(:New.Epilepsie);
 :New.Asthme_Pompe := Upper(:New.Asthme_Pompe);
 :New.Auto_Administration := Upper(:New.Auto_Administration);
-:New.Info_Sante_Supplementaire := Initcap(:New.Info_Sante_Supplementaire);
+:New.Infos_Sante_Supplementaires := Initcap(:New.Infos_Sante_Supplementaires);
 END TI_Joueurs;
 /
 
@@ -105,10 +102,10 @@ END TI_Ecoles;
 --
 CREATE OR REPLACE TRIGGER TI_Postes_Budgetaires
 BEFORE INSERT
-ON Postes_Budgeraires
+ON Postes_Budgetaires
 FOR EACH ROW
 BEGIN
-:New.ID_Poste := Seq_Postes_Budgetaires;
+:New.ID_Poste := Seq_Postes_Budgetaires.nextval;
 :New.Nom_Poste := Initcap(:New.Nom_Poste);
 :New.Depense := Upper(:New.Depense);
 END TI_Postes_Budgetaires;
@@ -178,7 +175,7 @@ BEGIN
 END Ti_Joueurs_Allergies;
 /
 
---Trigger Insert Table Joueurs_Médicaments
+--Trigger Insert Table Joueurs_MÃ©dicaments
 --
 CREATE OR REPLACE TRIGGER Ti_Joueurs_Medicaments
 BEFORE INSERT
@@ -198,7 +195,7 @@ BEFORE INSERT
 ON Dispos_Entraineurs
 FOR EACH ROW
 BEGIN
-:New.ID_Dispo := Seq_Dispos_Entraineurs.nextval;
+:New.ID_Dispo_Entraineur := Seq_Dispos_Entraineurs.nextval;
 :New.Jour := Initcap(:New.Jour);
 END TI_Dispos_Entraineurs;
 /
@@ -210,7 +207,7 @@ BEFORE INSERT
 ON Recompenses_Entraineurs
 FOR EACH ROW
 BEGIN
-:New.ID_Recompense := Seq_Recompenses_Entraineurs.nextval;
+:New.ID_Recompense_Entraineur := Seq_Recompenses_Entraineurs.nextval;
 END TI_Recompenses_Entraineurs;
 /
 
@@ -250,7 +247,7 @@ BEFORE INSERT
 ON Equipes
 FOR EACH ROW
 BEGIN
-:New.ID_Equipe := Seq_Equipe.nextval;
+:New.ID_Equipe := Seq_Equipes.nextval;
 :New.Nom := Initcap(:New.Nom);
 :New.Type_Equipe := Initcap(:New.Type_Equipe);
 END TI_Equipes;
@@ -276,19 +273,20 @@ ON Transactions
 FOR EACH ROW
 BEGIN
 :New.ID_Transaction := Seq_Transactions.nextval;
-:New.Commentaire := Initcap(:New.Commentaire);
+:New.Nom_Transaction := Initcap(:New.Nom_Transaction);
 :New.Mode_Paiement := Initcap(:New.Mode_Paiement);
+:New.Paye := Initcap(:New.Paye);
 END TI_Transactions;
 /
 ---------------------------------
 ------- Trigger Niveau 2 --------
 ---------------------------------
 
---Trigger insert Table Joueurs_Personnes
+--Trigger insert Table Personnes_Joueurs
 --
-CREATE OR REPLACE TRIGGER TI_Joueurs_Personnes
+CREATE OR REPLACE TRIGGER TI_Personnes_Joueurs
 BEFORE INSERT
-ON Joueurs_Personnes
+ON Personnes_Joueurs
 for each row
 BEGIN
 :New.Role_Personne := Initcap(:New.Role_Personne);
@@ -296,13 +294,33 @@ BEGIN
 END TI_Joueurs_Personnes;
 /
 
+-- Trigger Insert Table Equipes_Entraineurs
+--
+CREATE OR REPLACE TRIGGER TI_Equipes_Entraineurs
+BEFORE INSERT
+ON Equipes_Entraineurs
+FOR EACH ROW
+BEGIN
+:New.ID_Equipe_Entraineur := Seq_Equipes_Entraineurs.nextval;
+:New.Type_Entraineur := Initcap(:New.Type_Entraineur);
+END TI_Equipes_Entraineurs;
+/
 
-
+-- Trigger Insert Table Equipes_Tournois
+--
+CREATE OR REPLACE TRIGGER TI_Equipes_Tournois
+BEFORE INSERT
+ON Equipes_Tournois
+FOR EACH ROW
+BEGIN
+:New.ID_Equipe_Tournoi := Seq_Equipes_Tournois.nextval;
+END TI_Equipes_Tournois;
+/
 --Trigger insert Table Recus_Impots
 --
-CREATE OR REPLACE TRIGGER TI_Recus_Impots
+CREATE OR REPLACE TRIGGER TI_Recus_Impot
 BEFORE INSERT
-ON Recus_Impots
+ON Recus_Impot
 for each row
 BEGIN
 :New.ID_Recu := Seq_Recus_Impots.nextval;
@@ -333,7 +351,6 @@ BEGIN
 END TI_Dispos_Gyms;
 /
 
-
 --Trigger insert Table Inscriptions
 --
 CREATE OR REPLACE TRIGGER TI_Inscriptions
@@ -359,4 +376,5 @@ BEGIN
 :New.ID_Recipiendaire := Seq_Recipiendaires.nextval;
 :New.Titre := Initcap(:New.Titre);
 END TI_Recipiendaires;
-/
+
+
