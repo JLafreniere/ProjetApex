@@ -1,5 +1,3 @@
---Equipe entraineur
-
 ---------------------------------
 ------- Trigger Niveau 0 --------
 ---------------------------------
@@ -175,7 +173,7 @@ BEGIN
 END Ti_Joueurs_Allergies;
 /
 
---Trigger Insert Table Joueurs_MÃ©dicaments
+--Trigger Insert Table Joueurs_MÃƒÂ©dicaments
 --
 CREATE OR REPLACE TRIGGER Ti_Joueurs_Medicaments
 BEFORE INSERT
@@ -289,6 +287,7 @@ BEFORE INSERT
 ON Personnes_Joueurs
 for each row
 BEGIN
+:New.ID_Personne_Joueur := Seq_Personnes_Joueurs.nextval;
 :New.Role_Personne := Initcap(:New.Role_Personne);
 :New.Contact_Urgence := UPPER(:NEW.Contact_Urgence);
 END TI_Joueurs_Personnes;
