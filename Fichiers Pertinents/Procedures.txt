@@ -1,0 +1,47 @@
+create or replace
+procedure createSequence as
+BEGIN
+execute immediate 'Create Sequence Seq_Transactions Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Camisoles Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Categories Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Comptes_Utilisateurs Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Dispos_Gyms Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Dispos_Entraineurs Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Ecoles Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Entraineurs Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Equipes_Tournois Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Equipes Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Equipes_Entraineurs Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Factures Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Gyms Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Inscriptions Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Inventaires Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Joueurs_Medicaments Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Joueurs Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Joueurs_Allergies Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Joueurs_Blessures Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Personnes Maxvalue 99999 nocycle'; 
+execute immediate 'Create Sequence Seq_Postes_Budgetaires Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Pratiques Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Prets_Equipements Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Recipiendaires Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Recus_Impots Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Shorts Maxvalue 99999 nocycle';
+execute immediate 'Create Sequence Seq_Tournois Maxvalue 99999 nocycle';
+end createSequence;
+
+create or replace 
+procedure dropAll as
+  f number;
+BEGIN
+
+    FOR f IN (SELECT sequence_name FROM user_sequences) 
+    loop
+      execute immediate 'drop sequence "'||f.sequence_name||'"';
+    end loop;
+    
+      FOR f IN (SELECT table_name FROM user_tables) 
+    loop
+      execute immediate 'drop table '||f.table_name||' cascade constraint';
+    end loop;    
+end dropAll;
