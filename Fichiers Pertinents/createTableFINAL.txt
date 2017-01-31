@@ -1,3 +1,9 @@
+begin
+dropAll();
+createSequence();
+end;
+/
+
 CREATE TABLE Camisoles (
 ID_Camisole number(5) primary key,
 No_Camisole number(2),
@@ -21,8 +27,6 @@ Adresse varchar2(100),
 Ville varchar2(75),
 Code_Postal char(7),
 Date_naissance date,
-ID_Personne_Contact number(5),
-ID_Medecin_Famille number(5),
 Assurance_Maladie char(12),
 Groupe_Sanguin varchar(3),
 Diabete char(1),
@@ -50,7 +54,7 @@ Role_Contact varchar2(50),
 Cell_Contact char(10)
 );
 
-Create Table Postes_Budgetaire(
+Create Table Postes_Budgetaires(
 ID_Poste number(5) primary key,
 Nom_Poste varchar2(75),
 Depense char(1)
@@ -83,7 +87,8 @@ Fin_Service date,
 Telephone char(10),
 Adresse varchar2(100),
 Ville varchar2(75),
-Code_Postal char(7)
+Code_Postal char(7),
+NAS number(9)
 );
 
 ----- RELATION DEGRÉ 1 ---------------
@@ -92,7 +97,6 @@ CREATE TABLE Transactions (
 ID_Transaction number(5) primary key,
 Montant number(5,2),
 Nom_Transaction varchar2(50),
-Client varchar2(50),
 Date_Transaction date,
 paye char(1),
 Poste_Budgetaire varchar2(50),
@@ -117,7 +121,7 @@ ID_Equipe number(5) primary key,
 Nom varchar2(25),
 ID_Categorie number(5),
 ID_Ecole number(5),
-type varchar2(25),
+Type_Equipe varchar2(25),
 CONSTRAINT FK_ID_CATEGORIES_EQUIPES -- 
     FOREIGN KEY (ID_Categorie)
     REFERENCES Categories (ID_Categorie),
@@ -157,7 +161,6 @@ CONSTRAINT FK_ID_JOUEURS_ALLERGIES --
 
 Create Table Personnes(
 ID_Personne number(5) primary key,
-Lien varchar2(80),
 Nom varchar2(50),
 Prenom varchar2(50),
 Telephone1 char(10),
@@ -166,19 +169,14 @@ NAS char(9),
 Adresse varchar2(100),
 Ville varchar2(50),
 Code_Postal char(6),
-Eligible_Impot char(1),
-Nom_Contact_Urgence varchar2(50),
-Telephone_Urgence char(10),
-ID_Joueur number(5),
-CONSTRAINT FK_ID_JOUEURS_PERSONNES -- 
-    FOREIGN KEY (ID_Joueur)
-    REFERENCES Joueurs (ID_Joueur)
+Eligible_Impot char(1)
 );
 
 Create Table Prets_Equipements(
 ID_Pret number(5),
 ID_Camisole number(5),
 ID_Short number(5),
+Date_Pret date,
 Date_Remise_Prevue date,
 Date_Reception date,
 ID_Joueur number(5),
@@ -218,37 +216,110 @@ ID_Entraineur number(5),
 ---------------------------- DEGRÉ 2------------------------
 
 Create Table Inscriptions(
-ID_Inscription number(5),
+ID_Inscription number(5) primary key,
 ID_Equipe number(5),
 ID_Joueur number(5),
 Saison number(5), -- FOREIGN KEY???
 ID_Transaction number(5),
-    CONSTRAINT FK_ID_JOUEURS_INSCRIPTIONS -- 
+    CONSTRAINT FK_ID_INSCR_Joueurs -- 
     FOREIGN KEY (ID_Joueur)
     REFERENCES Joueurs (ID_Joueur),
     
-    CONSTRAINT FK_ID_EQUIPES_INSCRIPTIONS -- 
+    CONSTRAINT FK_ID_INSCR_Equipes -- 
     FOREIGN KEY (ID_EQUIPE)
     REFERENCES Equipes (ID_Equipe),
     
-    CONSTRAINT FK_ID_Transaction_INSCRIPTIONS -- 
+    CONSTRAINT FK_ID_INSCR_Transactions -- 
     FOREIGN KEY (ID_Transaction)
     REFERENCES Transactions (ID_Transaction)
 
 );
 
-Create table Equipe_Tournoi(
-ID_Equipe number(5),
+Create table Equipes_Tournois(
+ID_Equipe number(5) primary key,
 ID_Tournoi number(5),
 ID_Transaction number(5),
+    CONSTRAINT FK_ID_EQTOUR_EQUIPE-- 
+    FOREIGN KEY (ID_EQUIPE)
+    REFERENCES EQUIPES (ID_EQUIPE),
+        CONSTRAINT FK_ID_EQTOUR_TRANS-- 
+    FOREIGN KEY (ID_TRANSACTION)
+    REFERENCES TRANSACTIONS (ID_TRANSACTION)
 );
 
-Equipe_Tournoir -> Equipe, Tournoi, Transaction
-Pratique -> Equipe, Gym
-Dispos_Gym -> Gym					RONDE 3
-Equipe_Entraineur-> Equipe, Entraineur
 
-Recipiendaire -> Inscription				RONDE 4
+Create Table Pratiques(
+ID_Pratique number(5) primary key,
+ID_Equipe number(5),
+ID_Gym number(5),
+Jour number(1),
+Heure_Debut number(1,2),
+Heure_Fin number(1,2),
+    CONSTRAINT FK_ID_PRATIQUE_EQUIPE-- 
+    FOREIGN KEY (ID_EQUIPE)
+    REFERENCES EQUIPES (ID_EQUIPE),
+    CONSTRAINT FK_ID_PRATIQUE_GYM-- 
+    FOREIGN KEY (ID_GYM)
+    REFERENCES GYMS (ID_GYM)
+);
+
+Create Table Dispos_Gyms(
+ID_Dispo_Gym number(5) primary key,
+ID_Gym number(5),
+Jour number(1),
+Heure_Debut number(1,2),
+Heure_Fin number(1,2),
+    CONSTRAINT FK_ID_DISPOS_GYM-- 
+    FOREIGN KEY (ID_Gym)
+    REFERENCES Gyms (ID_Gym)
+);
 
 
+Create Table Equipes_Entraineurs(
+ID_Equipe_Entraineur number(5) primary key,
+ID_Equipe number(5),
+ID_Entraineur number(5),
+Type_Entraineur varchar2(50),
+    CONSTRAINT FK_ID_EQENT_Equipes -- 
+    FOREIGN KEY (ID_EQUIPE)
+    REFERENCES Equipes (ID_Equipe),
+    CONSTRAINT FK_ID_EQENT_Ent -- 
+    FOREIGN KEY (ID_Entraineur)
+    REFERENCES Entraineurs (ID_Entraineur)
+);
+
+Create Table Recipiendaires(
+ID_Recipiendaire number(5) primary key,
+Titre varchar2(75),
+ID_INSCRIPTION number(5),
+    CONSTRAINT FK_ID_REC_INSCR-- 
+    FOREIGN KEY (ID_INSCRIPTION)
+    REFERENCES Inscriptions (ID_INSCRIPTION)
+);
+
+Create Table Personnes_Joueurs(
+ID_Personne_Joueur number(5) primary key,
+ID_Personne number(5),
+ID_Joueur number(5),
+Role_Personne number(5),
+Contact_Urgence varchar2(75),
+CONSTRAINT FK_ID_PERSJOU_PERS-- 
+    FOREIGN KEY (ID_PERSONNE)
+    REFERENCES PERSONNES (ID_PERSONNE),
+    CONSTRAINT FK_ID_PERSJOU_JOUEUR-- 
+    FOREIGN KEY (ID_JOUEUR)
+    REFERENCES JOUEURS (ID_JOUEUR)
+);
+
+CREATE TABLE RECOMPENSES_ENTRAINEURS(
+ID_RECOMPENSE_ENTRAINEUR number(5) primary key,
+ID_Entraineur number(5),
+Montant number(5,2),
+Date_Recompense date,
+    CONSTRAINT FK_ID_RECENT_ENT-- 
+    FOREIGN KEY (ID_ENTRAINEUR)
+    REFERENCES ENTRAINEURS (ID_ENTRAINEUR)
+);
+/
+select * from user_tables order by table_name ASC
 
