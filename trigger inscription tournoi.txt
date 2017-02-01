@@ -1,0 +1,34 @@
+create or replace TRIGGER TI_Inscription_Tournoi
+BEFORE INSERT
+ON Equipes_Tournois
+FOR EACH ROW
+DECLARE
+v_count number(3);
+v_poste number(3);
+v_nom_transac1 varchar(50);
+v_nom_transac2 varchar(50);
+v_montant number(5,2);
+
+BEGIN
+  select count(*) into v_count from postes_budgetaires where nom_poste ='Tournoi';
+  if v_count > 0 then
+    select id_poste into v_poste from postes_budgetaires where nom_poste ='Tournoi';
+  elsif v_count = 0 then
+    insert into postes_budgetaires(nom_poste,depense) values('Tournoi','O');
+    v_poste := seq_postes_budgetaires.currval;
+  end if;
+  select montant_inscription into v_montant from tournois where ID_TOURNOI = :new.id_tournoi;
+  
+  select 'inscription '|| e.nom  into v_nom_transac1
+  from equipes e
+  where e.id_equipe = :new.id_equipe;
+  
+  select ' Tournoi '|| t.ville  into v_nom_transac2
+  from tournois t
+  where t.id_tournoi = :new.id_tournoi;
+  
+  insert into transactions(montant,nom_transaction,date_transaction,paye,poste_budgetaire) 
+  values(v_montant,v_nom_transac1||v_nom_transac2,sysdate,'N',v_poste);
+  
+  :new.id_transaction := seq_transactions.currval;
+END TI_Inscription_Tournoi;
