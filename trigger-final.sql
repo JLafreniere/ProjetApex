@@ -132,6 +132,18 @@ BEGIN
 END TI_Tournois;
 /
 
+--Trigger Insert Table Inventaires
+--
+CREATE OR REPLACE TRIGGER TI_Inventaires
+BEFORE INSERT
+ON inventaires
+for each row
+begin
+:New.ID_Inventaire := Seq_Inventaires.nextval;
+:New.Objet := Initcap(:New.Objet);
+:New.Couleur := Initcap(:New.Couleur);
+end TI_Inventaires;
+/
 ---------------------------------
 ------- Trigger Niveau 1 --------
 ---------------------------------
