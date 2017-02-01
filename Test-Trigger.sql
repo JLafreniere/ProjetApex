@@ -1,3 +1,85 @@
+---------------------------------
+---- Test  Trigger Niveau 0 -----
+---------------------------------
+
+--Test Camisoles
+
+--Test Shorts
+
+--Test Joueurs
+
+--Test Entraineurs
+
+--Test Categorie
+
+--Test Ecoles
+
+--Test Poste budgetaires
+
+--Test Factures
+
+--Test Tournois
+
+---------------------------------
+---- Test  Trigger Niveau 1 -----
+---------------------------------
+
+
+--Test Prets_Equipements 
+
+--Test Joueurs blessures
+
+--Test Joueurs allergies
+
+--Test Joueurs medicaments
+
+--Test dispos entraineurs
+
+--Test recompenses entraineurs
+
+--Test Personnes 
+
+--Test Equipes
+
+--Test Gyms
+
+--Test Transactions 
+
+---------------------------------
+---- Test  Trigger Niveau 2 -----
+---------------------------------
+
+--Test Personne Joueurs
+
+--Test Equipes entraineurs
+
+--Test Equipes Tournois
+
+--Test Recus Impot
+
+--Test Pratiques
+
+--Test Dispos Gyms
+
+--Test Inscriptions
+
+---------------------------------
+---- Test  Trigger Niveau 3 -----
+---------------------------------
+
+
+
+
+---------------------------------
+---- Test  Trigger Niveau 4 -----
+---------------------------------
+
+
+
+
+
+
+
 insert into inscriptions (id_camisole) values (1);
 delete from inscriptions;
 

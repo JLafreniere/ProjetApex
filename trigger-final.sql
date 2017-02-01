@@ -226,18 +226,6 @@ BEGIN
 END TI_Personnes;
 /
 
---Trigger Insert Table Personnes_Joueurs
---
-CREATE OR REPLACE TRIGGER TI_Personnes_Joueurs
-BEFORE INSERT
-ON Personnes_Joueurs
-FOR EACH ROW
-BEGIN
-:New.Role_Personne := Initcap(:New.Role_Personne);
-:New.Contact_Urgence := Initcap(:New.Contact_Urgence);
-END TI_Personnes_Joueurs;
-/
-
 --Trigger insert Table Equipes
 --
 CREATE OR REPLACE TRIGGER TI_Equipes
