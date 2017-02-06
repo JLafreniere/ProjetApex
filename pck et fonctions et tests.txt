@@ -1,6 +1,7 @@
 CREATE OR REPLACE PACKAGE Pck_Abbtr as
 FUNCTION Afficher_Telephone(p_tel CHAR) RETURN CHAR;
 FUNCTION Afficher_Code_Postal(p_code_postal CHAR) RETURN CHAR;
+FUNCTION Verifier_No_Camisole(p_numero NUMBER) RETURN BOOLEAN;
 END Pck_Abbtr;
 /
 CREATE OR REPLACE PACKAGE BODY Pck_Abbtr as
@@ -15,15 +16,78 @@ CREATE OR REPLACE PACKAGE BODY Pck_Abbtr as
   BEGIN
   return upper(substr(p_code_postal,1,3) || ' ' || substr(p_code_postal,4,3));
   END Afficher_Code_Postal;
-END Pck_Abbtr;
+  
+  FUNCTION Verifier_No_Camisole(p_numero NUMBER) RETURN BOOLEAN is
+  BEGIN
+  
+  if (p_numero < 10 ) and (p_numero > 0) THEN
+  return true;
+  end if;
+  
+  if (p_numero >= 10) and ( mod(p_numero,10) >= 0 ) and ( mod(p_numero,10) <= 5 ) and (p_numero <= 50) THEN
+  return true;
+  end if;
+  
+  return false;
+  END Verifier_No_Camisole;
+END pck_abbtr;
 
 
 
-begin
+begin 
 dbms_output.put_line('Test fonctionnel Afficher Téléphone');
 dbms_output.put_line('Input 8193773238 Return attendu : (819) 377-3238');
 dbms_output.put_line(pck_abbtr.afficher_telephone('8193773238'));
 dbms_output.put_line('Test fonctionnel Afficher Code Postal');
 dbms_output.put_line('Input : g9b6g9 Return attendu : G9B 6G9');
 dbms_output.put_line(Pck_Abbtr.afficher_code_postal('g9b6g9'));
+
+dbms_output.put_line('Test fonctionnel Vérifier_no_camisole');
+dbms_output.put_line('Input 0 Return attendu : False');
+if (pck_abbtr.verifier_no_camisole(0)) then
+dbms_output.put_line('Valide');
+else
+dbms_output.put_line('Invalide');
+end if;
+
+dbms_output.put_line('Test fonctionnel Vérifier_no_camisole');
+dbms_output.put_line('Input 5 Return attendu : True');
+if (pck_abbtr.verifier_no_camisole(5)) then
+dbms_output.put_line('Valide');
+else
+dbms_output.put_line('Invalide');
+end if;
+
+dbms_output.put_line('Test fonctionnel Vérifier_no_camisole');
+dbms_output.put_line('Input 6 Return attendu : True');
+if (pck_abbtr.verifier_no_camisole(6)) then
+dbms_output.put_line('Valide');
+else
+dbms_output.put_line('Invalide');
+end if;
+
+dbms_output.put_line('Test fonctionnel Vérifier_no_camisole');
+dbms_output.put_line('Input 19 Return attendu : False');
+if (pck_abbtr.verifier_no_camisole(19)) then
+dbms_output.put_line('Valide');
+else
+dbms_output.put_line('Invalide');
+end if;
+
+dbms_output.put_line('Test fonctionnel Vérifier_no_camisole');
+dbms_output.put_line('Input 50 Return attendu : True');
+if (pck_abbtr.verifier_no_camisole(50)) then
+dbms_output.put_line('Valide');
+else
+dbms_output.put_line('Invalide');
+end if;
+
+dbms_output.put_line('Test fonctionnel Vérifier_no_camisole');
+dbms_output.put_line('Input 60 Return attendu : False');
+if (pck_abbtr.verifier_no_camisole(60)) then
+dbms_output.put_line('Valide');
+else
+dbms_output.put_line('Invalide');
+end if;
+
 end;

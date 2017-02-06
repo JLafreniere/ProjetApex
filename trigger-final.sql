@@ -30,7 +30,8 @@ END TI_Shorts;
 
 --Trigger insert Table Joueurs
 --
-CREATE OR REPLACE TRIGGER TI_Joueurs
+create or replace 
+trigger TI_Joueurs
 BEFORE INSERT
 ON Joueurs
 FOR EACH ROW
@@ -39,6 +40,7 @@ BEGIN
 :New.Nom := Initcap(:New.Nom);
 :New.Prenom := Initcap(:New.Prenom);
 :New.Adresse := Initcap(:New.Adresse);
+:New.Sexe := Upper(:New.Sexe);
 :New.Ville := Initcap(:New.Ville);
 :New.Code_Postal := UPPER(:New.Code_Postal);
 :New.Assurance_Maladie := Upper(:New.Assurance_Maladie);

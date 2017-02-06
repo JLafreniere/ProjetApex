@@ -6,3 +6,4 @@ Comptes apex : PR0104A et PR0104B
 
 Mot de passe : Xn06nx35
 
+Remplacer les N par des null pour checkbox

@@ -135,29 +135,30 @@ insert into shorts (taille,quantite) values('X Large',25);
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
-					   diabete,epilespsie,asthme_pompe,auto_administration) values
+					   diabete,epilepsie,asthme_pompe,auto_administration) values
 						('Genest','Lucie','f','300 3e avenue','Trois-Rivières','g9b 7x5',
 						'2005-12-12','LUGE05121203','AB-','n','n','n','n');
 
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
-					   diabete,epilespsie,asthme_pompe,auto_administration) values
+					   diabete,epilepsie,asthme_pompe,auto_administration) values
 						('Genest','Luc','h','300 3e avenue','Trois-Rivières','g9b 7x5',
 						'2004-10-12','LGEN05121203','AB+','o','o','o','n');
 
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
-					   diabete,epilespsie,asthme_pompe,auto_administration) values
+					   diabete,epilepsie,asthme_pompe,auto_administration) values
 						('Dubé','George','h','300 3e rue','Trois-Rivières','p9b 7k5',
 						'2005-01-12','GDUB05121203','A+','n','n','o','o');
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
-					   diabete,epilespsie,asthme_pompe,auto_administration) values
+					   diabete,epilepsie,asthme_pompe,auto_administration) values
 						('Lafrance','Arnold','h','25 rue principale','Trois-Rivières','p8b 5k2',
 						'2004-02-06','LGEN05121203','B-','n','n','n','n');
+
 
 --Test Entraineurs
 
