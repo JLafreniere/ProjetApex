@@ -1,10 +1,18 @@
-CREATE OR REPLACE PACKAGE Pck_Abbtr as
+
+
+create or replace 
+PACKAGE Pck_Abbtr as
 FUNCTION Afficher_Telephone(p_tel CHAR) RETURN CHAR;
 FUNCTION Afficher_Code_Postal(p_code_postal CHAR) RETURN CHAR;
 FUNCTION Verifier_No_Camisole(p_numero NUMBER) RETURN BOOLEAN;
+FUNCTION Valider_Codepostal(code varchar2) Return Boolean;
+FUNCTION authenticate_user  (p_username in varchar2, p_password in varchar2) RETURN BOOLEAN;
+FUNCTION composer_username (p_nom varchar2) return char;
 END Pck_Abbtr;
-/
-CREATE OR REPLACE PACKAGE BODY Pck_Abbtr as
+
+
+create or replace 
+PACKAGE BODY Pck_Abbtr as
   FUNCTION Afficher_Telephone(p_tel CHAR) RETURN CHAR is
   BEGIN
   return '(' || substr(p_tel,1,3) || ') ' ||
@@ -30,8 +38,75 @@ CREATE OR REPLACE PACKAGE BODY Pck_Abbtr as
   
   return false;
   END Verifier_No_Camisole;
-END pck_abbtr;
 
+  Function Valider_Codepostal(code varchar2) Return Boolean As 
+    begin
+    If Regexp_Like(code, '^[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}(\-| |){1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}$') Then
+    return true;
+  Else 
+    return false;
+     End If;
+ end Valider_Codepostal;
+
+
+  FUNCTION VALIDERNAS(nas varchar2) RETURN BOOLEAN AS 
+  Begin
+  If Regexp_Like(nas, '[0-9]{9}') Then
+    return true;
+  Else 
+    return false;
+  End If;
+  end VALIDERNAS;
+
+  function authenticate_user
+  (p_username in varchar2, p_password in varchar2)
+return boolean
+is
+  l_user_name       utilisateurs.nom_utilisateur%type    := upper(p_username);
+  l_password        utilisateurs.mot_de_passe%type;
+  l_count           number;
+begin
+-- First, check to see if the user exists
+select count(*) into l_count from utilisateurs
+  where nom_utilisateur = l_user_name;
+
+if l_count > 0 then
+  -- Get the stored password
+  select mot_de_passe into l_password from utilisateurs where nom_utilisateur = l_user_name;
+  -- Compare the two, and if there is a match, return TRUE
+  if p_password = l_password then
+    return true;
+  else
+    return false;
+  end if;
+  
+else
+  -- The username does not exist
+  return false;
+end if;
+return true;
+end authenticate_user;
+
+  FUNCTION composer_username (p_nom varchar2) return char
+  is
+  v_nbr_compte number;
+  v_nbr number;
+  begin
+  
+  select count(*) into v_nbr from joueurs where nom = Initcap(p_nom);
+  select Count(*) into v_nbr_compte from utilisateurs where  substr(Upper(nom_utilisateur),1,3) = substr(Upper(p_nom),1,3);
+  
+  if (v_nbr +1 < 10) and (v_nbr_compte +1 < 10) then
+  return substr(Upper(p_nom),1,3) || '0' || (v_nbr+1) || '-' || '0' || (v_nbr_compte + 1);
+  elsif (v_nbr +1 >= 10) and (v_nbr_compte +1 < 10) then
+  return substr(Upper(p_nom),1,3) || (v_nbr+1) || '-' || '0' || (v_nbr_compte + 1);
+  elsif (v_nbr +1 < 10) and (v_nbr_compte +1 >= 10) then
+  return substr(Upper(p_nom),1,3) || '0' || (v_nbr+1) || '-' || (v_nbr_compte + 1);  
+  else
+  return substr(Upper(p_nom),1,3) || (v_nbr+1) || '-' || (v_nbr_compte + 1);
+  end if;
+  end composer_username;
+END pck_abbtr;
 
 
 begin 
@@ -90,4 +165,7 @@ else
 dbms_output.put_line('Invalide');
 end if;
 
+dbms_output.put_line('Test fonctionnel Composer username');
+dbms_output.put_line('Input Jean Return attendu : JEA01-01');
+DBMS_OUTPUT.PUT_LINE(pck_abbtr.composer_username('Jean'));
 end;

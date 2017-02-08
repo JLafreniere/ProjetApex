@@ -136,48 +136,61 @@ insert into shorts (taille,quantite) values('X Large',25);
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
 					   diabete,epilepsie,asthme_pompe,auto_administration) values
-						('Genest','Lucie','f','300 3e avenue','Trois-Rivières','g9b 7x5',
-						'2005-12-12','LUGE05121203','AB-','n','n','n','n');
+						('Genest','Lucie','f','300 3e avenue','Trois-Rivières','g9b7x5',
+						'2005-12-12','LUGE05121203','AB-',null,null,null,null);
 
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
 					   diabete,epilepsie,asthme_pompe,auto_administration) values
-						('Genest','Luc','h','300 3e avenue','Trois-Rivières','g9b 7x5',
-						'2004-10-12','LGEN05121203','AB+','o','o','o','n');
+						('Genest','Luc','h','300 3e avenue','Trois-Rivières','g9b7x5',
+						'2004-10-12','LGEN05121203','AB+','o','o','o',null);
 
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
 					   diabete,epilepsie,asthme_pompe,auto_administration) values
-						('Dubé','George','h','300 3e rue','Trois-Rivières','p9b 7k5',
-						'2005-01-12','GDUB05121203','A+','n','n','o','o');
+						('Dubé','George','h','300 3e rue','Trois-Rivières','p9b7k5',
+						'2005-01-12','GDUB05121203','A+',null,null,'o','o');
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
 					   diabete,epilepsie,asthme_pompe,auto_administration) values
-						('Lafrance','Arnold','h','25 rue principale','Trois-Rivières','p8b 5k2',
-						'2004-02-06','LGEN05121203','B-','n','n','n','n');
+						('Lafrance','Arnold','h','25 rue principale','Trois-Rivières','p8b5k2',
+						'2004-02-06','LGEN05121203','B-',null,null,null,null);
 
+insert into joueurs values(null, 'Martin', 'Renaud', 'M','222 3eme avenue ','Trois-Rivières', 'G0X2P0', sysdate - 3600, 'MARR29010110', 'AO+', 'O', 'o', 'n', 'o', 'Asthmatique');
+
+insert into joueurs values(null, 'Marie', 'Renaude', 'M', '222 65eme avenue ', 'Cap de la Madeleine', 'P0X9P3', sysdate - 4000, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', null);
+
+insert into joueurs values(null, 'Spicer', 'Bob', 'M', '205 rue des écureuils ','Saint-Étienne-des-Grès', 'G9B9P3', sysdate - 4600, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', null);
+
+insert into joueurs values(null, 'Donald', 'Ron', 'M', '400 5e rue ','Trois-Rivières', 'G9B9P3', sysdate - 4500, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', 'Commander in chief');
 
 --Test Entraineurs
 
 insert into entraineurs (nom,prenom,date_naissance,nas,fin_service,telephone,adresse,ville,code_postal)
-values('Bérubé','Benoît','1980-12-06','287162538',null,'8193772618','120 rue Montour','Trois-Rivières','y6t 7u8');
+values('Bérubé','Benoît','1980-12-06','287162538',null,'8193772618','120 rue Montour','Trois-Rivières','y6t7u8');
 
 insert into entraineurs (nom,prenom,date_naissance,nas,fin_service,telephone,adresse,ville,code_postal)
-values('Tremblay','Marcel','1992-02-06','287162538',null,'8192692348','220 rue Montour','Trois-Rivières','y6t 7u8');
+values('Tremblay','Marcel','1992-02-06','287162538',null,'8192692348','220 rue Montour','Trois-Rivières','y6t7u8');
 
 insert into entraineurs (nom,prenom,date_naissance,nas,fin_service,telephone,adresse,ville,code_postal)
-values('Lapointe','Philippe','1975-10-06','183971265',null,'8193972448','500 9e rue','Trois-Rivières','y6t 7u8');
+values('Lapointe','Philippe','1975-10-06','183971265',null,'8193972448','500 9e rue','Trois-Rivières','y6t7u8');
 
 insert into entraineurs (nom,prenom,date_naissance,nas,fin_service,telephone,adresse,ville,code_postal)
-values('Leclerc','Éric','1982-12-07','173946285',null,'8193472008','39 10e rue','Trois-Rivières','y6t 7z7');
+values('Leclerc','Éric','1982-12-07','173946285',null,'8193472008','39 10e rue','Trois-Rivières','y6t7z7');
 
 insert into entraineurs (nom,prenom,date_naissance,nas,fin_service,telephone,adresse,ville,code_postal)
-values('Caron','Pierre-Édouard','1990-09-08','854596553',null,'8194182618','110 avenue nord','Trois-Rivières','b6z k2h');
+values('Caron','Pierre-Édouard','1990-09-08','854596553',null,'8194182618','110 avenue nord','Trois-Rivières','b6zk2h');
 
+insert into entraineurs values(null, 'Rubio', 'Marco', sysdate-9000, '123333321', null, 8193331234, 
+	'205 Avenue Émeraude', 'Québec', 'R1B1OS');
 
+insert into entraineurs values(null, 'Paré', 'Martin', sysdate-9500, '123444321', null, 8194442345, 
+	'255 Avenue Diamant', 'Montréal', 'M4R71N');
+insert into entraineurs values(null, 'Roy', 'Mathieu', sysdate-9600, '234554321', null, 8196542345, 
+	'255 Avenue Opale', 'Daveluyvill', 'M4713U');
 --Test Categorie
 
 insert into categories (nom) values ('5-6 Filles');
@@ -190,15 +203,27 @@ insert into categories (nom) values ('Mini 3 Gars');
 --Test Ecoles
  
 insert into ecoles (nom,adresse,ville,code_postal,telephone,contact,role_contact,cell_contact)
-	values ('Beau-Soleil','1212 chemin St-Marguerite','Pointe-Du-Lac','G9b 5h4',
+	values ('Beau-Soleil','1212 chemin St-Marguerite','Pointe-Du-Lac','G9b5h4',
 		   '8193772837','Pierre Laporte','Responsable','8192681415');
 
+insert into ecoles values
+	(null, 'Chavigny', '3000 rue Chavigny', 'ChavignyVille', 'C4AV1G',
+	 8193639000, 'Jean Chavigny', 'Directeur de chavigny', 8199999999);
+insert into ecoles values(null, 'Pionniers', '3000 avenue des Pionniers', 'Saint-Pionners', 'P10N13',
+ 8193639050, 'Marc Pionnier', 'Directeur des Pionniers', 8199999329);
+insert into ecoles values(null, 'Keranna', '3000 boulevard Keranna', 'KerannaCity', 'P10N13', 
+	8193639050, 'Marc Pionnier', 'Directeur des Pionniers', 8199999329);
+
 --Test Poste budgetaires
+
+insert into postes_budgetaires values(null, 'Opérations courantes', 'O');
+insert into postes_budgetaires values(null, 'Revenus Inscription', null);
 
 --Test Factures
 
 --Test Tournois
-
+insert into tournois values(null, 'Sainte-Clémentine', sysdate+400, sysdate +403, 200);
+insert into tournois values(null, 'Sainte-Pérpétue', sysdate+500, sysdate +505, 225);
 ---------------------------------
 ---- Test  Trigger Niveau 1 -----
 ---------------------------------
@@ -209,6 +234,10 @@ insert into ecoles (nom,adresse,ville,code_postal,telephone,contact,role_contact
 --Test dispos entraineurs
 --Test recompenses entraineurs
 --Test Personnes
+insert into personnes values (null,'Genest','Marc','8193093938',null,'837837823','300 3e avenue','Trois-Rivières','g9b7x5','O');
+insert into personnes values (null,'Dubé','Pierre','8193771238',null,'837837823','300 3e rue','Trois-Rivières','p9b7k5',null);
+insert into personnes values (null,'Lafrance','Monique','8193774546',null,'837837823','25 rue principale','Trois-Rivières','p8b5k2','O');
+
 --Test Equipes
 --Test Gyms
 --Test Transactions
@@ -216,6 +245,19 @@ insert into ecoles (nom,adresse,ville,code_postal,telephone,contact,role_contact
 ---- Test  Trigger Niveau 2 -----
 ---------------------------------
 --Test Personne Joueurs
+insert into personnes_joueurs values (null,1,1,'Père','O');
+insert into personnes_joueurs values (null,1,2,'Père','O');
+insert into personnes_joueurs values (null,2,3,'Père',null);
+insert into personnes_joueurs values (null,3,4,'Mère','O');
+--Test apex_access_setup
+insert into apex_access_setup values (1, null, 862);
+--Test utilisateurs
+INSERT INTO utilisateurs VALUES (null, 'bob', 'bob',null);
+INSERT INTO utilisateurs VALUES (null, null, 'bob',1);
+INSERT INTO utilisateurs VALUES (null, null, 'bob',2);
+INSERT INTO utilisateurs VALUES (null, null, 'bob',3);
+
+
 --Test Equipes entraineurs
 --Test Equipes Tournois
 --Test Recus Impot
@@ -228,29 +270,3 @@ insert into ecoles (nom,adresse,ville,code_postal,telephone,contact,role_contact
 ---------------------------------
 ---- Test  Trigger Niveau 4 -----
 ---------------------------------
-insert into inscriptions (id_camisole) values (1);
-delete from inscriptions;
-insert into factures (date_facture) values (sysdate);
-delete from factures;
-insert into joueurs_allergies(Nom_allergie) values ('Arachides');
-delete from joueurs_allergies;
-insert into joueurs_blessures(Nom_blessure) values ('Fracture du coude');
-delete from joueurs_blessures;
-insert into Joueurs_Medicaments(Nom_medicament) values ('Morphine');
-delete from Joueurs_medicaments;
-insert into joueurs(Nom) values ('Tremblay');
-delete from joueurs;
-insert into Camisoles(No_camisole) values (2);
-delete from camisoles;
-insert into dispos_Gyms (Jour) values ('lundi');
-delete from dispos_gyms;
-insert into categories (nom)  values ('mini 3-4');
-delete from categories;
-insert into ecoles (Nom,adresse,ville,code_postal,contact,role_contact) values
-('Chavigny','3000 rue Chavigny','Trois-Rivières','g8h6r4','bob lamarche','Directeur');
-delete from ecoles;
-insert into entraineurs (nom,prenom,date_naissance,adresse,ville,code_postal)
-values ('Test','Jean',sysdate,'200 boulevard Gene-H Kruger','trois-rivières','j8g8d6');
-delete from entraineurs;
-insert into Equipes (nom,type_equipe) values ('Les rafales','Masculin');
-delete from equipes;
