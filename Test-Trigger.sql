@@ -136,36 +136,36 @@ insert into shorts (taille,quantite) values('X Large',25);
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
 					   diabete,epilepsie,asthme_pompe,auto_administration) values
-						('Genest','Lucie','f','300 3e avenue','Trois-Rivières','g9b7x5',
+						('Genest','Lucie','F','300 3e avenue','Trois-Rivières','g9b7x5',
 						'2005-12-12','LUGE05121203','AB-',null,null,null,null);
 
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
 					   diabete,epilepsie,asthme_pompe,auto_administration) values
-						('Genest','Luc','h','300 3e avenue','Trois-Rivières','g9b7x5',
+						('Genest','Luc','H','300 3e avenue','Trois-Rivières','g9b7x5',
 						'2004-10-12','LGEN05121203','AB+','o','o','o',null);
 
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
 					   diabete,epilepsie,asthme_pompe,auto_administration) values
-						('Dubé','George','h','300 3e rue','Trois-Rivières','p9b7k5',
+						('Dubé','George','H','300 3e rue','Trois-Rivières','p9b7k5',
 						'2005-01-12','GDUB05121203','A+',null,null,'o','o');
 
 insert into joueurs (nom,prenom,sexe,adresse,ville,
 					   code_postal,date_naissance,assurance_maladie,groupe_sanguin,
 					   diabete,epilepsie,asthme_pompe,auto_administration) values
-						('Lafrance','Arnold','h','25 rue principale','Trois-Rivières','p8b5k2',
+						('Lafrance','Arnold','H','25 rue principale','Trois-Rivières','p8b5k2',
 						'2004-02-06','LGEN05121203','B-',null,null,null,null);
 
-insert into joueurs values(null, 'Martin', 'Renaud', 'M','222 3eme avenue ','Trois-Rivières', 'G0X2P0', sysdate - 3600, 'MARR29010110', 'AO+', 'O', 'o', 'n', 'o', 'Asthmatique');
+insert into joueurs values(null, 'Martin', 'Renaud', 'H','222 3eme avenue ','Trois-Rivières', 'G0X2P0', sysdate - 3600, 'MARR29010110', 'AO+', 'O', 'o', 'n', 'o', 'Asthmatique');
 
-insert into joueurs values(null, 'Marie', 'Renaude', 'M', '222 65eme avenue ', 'Cap de la Madeleine', 'P0X9P3', sysdate - 4000, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', null);
+insert into joueurs values(null, 'Marie', 'Renaude', 'F', '222 65eme avenue ', 'Cap de la Madeleine', 'P0X9P3', sysdate - 4000, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', null);
 
-insert into joueurs values(null, 'Spicer', 'Bob', 'M', '205 rue des écureuils ','Saint-Étienne-des-Grès', 'G9B9P3', sysdate - 4600, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', null);
+insert into joueurs values(null, 'Spicer', 'Bob', 'H', '205 rue des écureuils ','Saint-Étienne-des-Grès', 'G9B9P3', sysdate - 4600, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', null);
 
-insert into joueurs values(null, 'Donald', 'Ron', 'M', '400 5e rue ','Trois-Rivières', 'G9B9P3', sysdate - 4500, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', 'Commander in chief');
+insert into joueurs values(null, 'Donald', 'Ron', 'H', '400 5e rue ','Trois-Rivières', 'G9B9P3', sysdate - 4500, 'MARR29010111', 'O+', 'O', 'o', 'n', 'o', 'Commander in chief');
 
 --Test Entraineurs
 
@@ -267,6 +267,5 @@ INSERT INTO utilisateurs VALUES (null, null, 'bob',3);
 ---------------------------------
 ---- Test  Trigger Niveau 3 -----
 ---------------------------------
----------------------------------
----- Test  Trigger Niveau 4 -----
----------------------------------
+--Test Recipiendaires 
+

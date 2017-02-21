@@ -28,6 +28,19 @@ BEGIN
 END TI_Shorts;
 /
 
+--Trigger insert Table Inventaires
+--
+create or replace 
+trigger TI_Inventaire
+BEFORE INSERT
+on Inventaires
+FOR EACH ROW
+BEGIN
+:new.ID_Inventaire := Seq_Inventaires.nextval;
+:new.Objet := Initcap(:new.Objet);
+:new.Couleur := Initcap(:new.Couleur);
+END;
+
 --Trigger insert Table Joueurs
 --
 create or replace 
