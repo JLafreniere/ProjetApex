@@ -215,7 +215,6 @@ insert into ecoles values(null, 'Keranna', '3000 boulevard Keranna', 'KerannaCit
 	8193639050, 'Marc Pionnier', 'Directeur des Pionniers', 8199999329);
 
 --Test Poste budgetaires
-
 insert into postes_budgetaires values(null, 'Opérations courantes', 'O');
 insert into postes_budgetaires values(null, 'Revenus Inscription', null);
 
@@ -228,18 +227,50 @@ insert into tournois values(null, 'Sainte-Pérpétue', sysdate+500, sysdate +505, 
 ---- Test  Trigger Niveau 1 -----
 ---------------------------------
 --Test Prets_Equipements
+insert into prets_equipements values(null, sysdate-1000, 1, 1, sysdate + 15, null, 1);
+insert into prets_equipements values(null, sysdate-700, 2, 2, sysdate + 20, null, 3);
+insert into prets_equipements values(null, sysdate-300, 4, 3, sysdate + 120, Sysdate + 120, 4);
 --Test Joueurs blessures
+insert into joueurs_blessures values(null, 'Fracture du Tibia', sysdate-2000, 1);
+insert into joueurs_blessures values(null, 'Fracture du Fémur', sysdate-1500, 1);
+insert into joueurs_blessures values(null, 'Foulure de la cheville', sysdate-1500, 1);
+insert into joueurs_blessures values(null, 'Crise cardiaque', sysdate-1100, 3);
+insert into joueurs_blessures values(null, 'Épaule déplacée', sysdate-700, 2);
 --Test Joueurs allergies
+insert into joueurs_blessures values(null, 'Arachides', 1);
+insert into joueurs_blessures values(null, 'Fruits de mer', 1);
+insert into joueurs_blessures values(null, 'Gluten', 2);
+insert into joueurs_blessures values(null, 'Lactose', 3);
 --Test Joueurs medicaments
+insert into joueurs_medicaments values(null, 'Doliprane', '2 pilules 2 fois par jour', 1);
+insert into joueurs_medicaments values(null, 'Efferalgan', '2 pilules 1 fois par jour', 1);
+insert into joueurs_medicaments values(null, 'Dafalgan', '2 pilules 1 fois par jour', 2);
+insert into joueurs_medicaments values(null, 'Méthadone', '2 berlingots 1 fois par jour', 2);
 --Test dispos entraineurs
 --Test recompenses entraineurs
+Insert into recompenses_entraineurs values(null, 1, 200, sysdate - 100);
+Insert into recompenses_entraineurs values(null, 1, 210, sysdate - 200);
+Insert into recompenses_entraineurs values(null, 3, 160, sysdate - 300);
+Insert into recompenses_entraineurs values(null, 2, 175, sysdate - 50);
+Insert into recompenses_entraineurs values(null, 4, 275, sysdate - 50);
+Insert into recompenses_entraineurs values(null, 1, 375, sysdate - 150);
 --Test Personnes
 insert into personnes values (null,'Genest','Marc','8193093938',null,'837837823','300 3e avenue','Trois-Rivières','g9b7x5','O');
 insert into personnes values (null,'Dubé','Pierre','8193771238',null,'837837823','300 3e rue','Trois-Rivières','p9b7k5',null);
 insert into personnes values (null,'Lafrance','Monique','8193774546',null,'837837823','25 rue principale','Trois-Rivières','p8b5k2','O');
 
 --Test Equipes
+insert into equipes values(null, 'Les Éclairs', 1, 'Mixte', 100);
+insert into equipes values(null, 'Les Magiciens', 2, 'Mixte', 200);
+insert into equipes values(null, 'Les Serpents', 3, 'Mixte', 150);
+insert into equipes values(null, 'Les Abeilles', 4, 'Féminin', 220);
 --Test Gyms
+insert into gyms values(null, 1, 'Gymnase du Pavillon Pierre-Édouard');
+insert into gyms values(null, 3, 'Gymnase Central');
+insert into gyms values(null, 2, 'Gymnase A1');
+insert into gyms values(null, 2, 'Gymnase A2');
+
+
 --Test Transactions
 ---------------------------------
 ---- Test  Trigger Niveau 2 -----
@@ -259,7 +290,16 @@ INSERT INTO utilisateurs VALUES (null, null, 'bob',3);
 
 
 --Test Equipes entraineurs
+insert into equipes_entraineurs(null, 'Entraineur Chef', 1, 1);
+insert into equipes_entraineurs(null, 'Entraineur Chef', 2, 3);
+insert into equipes_entraineurs(null, 'Assistant Entraineur', 3, 2);
+
 --Test Equipes Tournois
+insert into equipes_tournois values(null, 1, 2, null);
+insert into equipes_tournois values(null, 3, 2, null);
+insert into equipes_tournois values(null, 2, 2, null);
+insert into equipes_tournois values(null, 1, 1, null);
+insert into equipes_tournois values(null, 3, 1, null);
 --Test Recus Impot
 --Test Pratiques
 --Test Dispos Gyms
