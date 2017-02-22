@@ -1,5 +1,3 @@
-
-
 create or replace 
 PACKAGE Pck_Abbtr as
 FUNCTION Afficher_Telephone(p_tel CHAR) RETURN CHAR;
@@ -9,8 +7,7 @@ FUNCTION Valider_Codepostal(code varchar2) Return Boolean;
 FUNCTION authenticate_user  (p_username in varchar2, p_password in varchar2) RETURN BOOLEAN;
 FUNCTION composer_username (p_nom varchar2) return char;
 END Pck_Abbtr;
-
-
+/
 create or replace 
 PACKAGE BODY Pck_Abbtr as
   FUNCTION Afficher_Telephone(p_tel CHAR) RETURN CHAR is
@@ -32,7 +29,7 @@ PACKAGE BODY Pck_Abbtr as
   return true;
   end if;
   
-  if (p_numero >= 10) and ( mod(p_numero,10) >= 0 ) and ( mod(p_numero,10) <= 5 ) and (p_numero <= 50) THEN
+  if (p_numero >= 10) and ( mod(p_numero,10) >= 0 ) and ( mod(p_numero,10) <= 5 ) and (p_numero <= 55) THEN
   return true;
   end if;
   
