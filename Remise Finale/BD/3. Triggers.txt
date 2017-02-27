@@ -1,0 +1,481 @@
+create or replace TRIGGER TI_Camisoles
+BEFORE INSERT
+ON Camisoles
+FOR EACH ROW
+BEGIN
+:New.ID_Camisole := Seq_Camisoles.nextval;
+:New.Sexe := UPPER(:New.Sexe);
+:New.Couleur := Initcap(:New.Couleur);
+:New.Taille := Initcap(:New.Taille);
+END TI_Camisoles;
+
+
+--Trigger insert Table Shorts
+--
+/
+create or replace TRIGGER TI_Shorts
+BEFORE INSERT
+ON Shorts
+FOR EACH ROW
+BEGIN
+:New.ID_Short := Seq_Shorts.nextval;
+:New.Taille := Initcap(:New.Taille);
+END TI_Shorts;
+
+--Trigger insert Table Inventaires
+--
+/
+create or replace 
+trigger TI_Inventaire
+BEFORE INSERT
+on Inventaires
+FOR EACH ROW
+BEGIN
+:new.ID_Inventaire := Seq_Inventaires.nextval;
+:new.Objet := Initcap(:new.Objet);
+:new.Couleur := Initcap(:new.Couleur);
+END;
+
+
+--Trigger insert Table Joueurs
+--
+/
+create or replace TRIGGER TI_Joueurs
+BEFORE INSERT
+ON Joueurs
+FOR EACH ROW
+BEGIN
+:New.ID_Joueur := Seq_Joueurs.nextval;
+:New.Nom := Initcap(:New.Nom);
+:New.Prenom := Initcap(:New.Prenom);
+:New.Adresse := Initcap(:New.Adresse);
+:New.Ville := Initcap(:New.Ville);
+:New.Code_Postal := UPPER(:New.Code_Postal);
+:New.Assurance_Maladie := Upper(:New.Assurance_Maladie);
+:New.Groupe_Sanguin := Upper(:New.Groupe_Sanguin);
+:New.Diabete := Upper(:New.Diabete);
+:New.Epilepsie := Upper(:New.Epilepsie);
+:New.Asthme_Pompe := Upper(:New.Asthme_Pompe);
+:New.Auto_Administration := Upper(:New.Auto_Administration);
+:New.Infos_Sante_Supplementaires := Initcap(:New.Infos_Sante_Supplementaires);
+END TI_Joueurs;
+
+
+--Trigger insert Table entraineurs
+--
+/
+create or replace TRIGGER TI_Entraineurs
+BEFORE INSERT 
+ON Entraineurs
+FOR EACH ROW
+BEGIN
+:New.ID_Entraineur := Seq_Entraineurs.nextval;
+:New.Nom := Initcap(:New.Nom);
+:New.Prenom := Initcap(:New.Prenom);
+:New.Adresse := Initcap(:New.Adresse);
+:New.Ville := Initcap(:New.Ville);
+:New.Code_Postal := UPPER(:New.Code_Postal);
+END TI_Entraineurs;
+
+
+--Trigger insert Table Categories
+--
+/
+create or replace TRIGGER TI_Categories
+BEFORE INSERT
+ON Categories
+FOR EACH ROW
+BEGIN
+:New.ID_Categorie := Seq_Categories.nextval;
+:New.Nom := Initcap(:New.Nom);
+END TI_Categories;
+
+
+--Trigger Insert Table Ecoles
+--
+/
+create or replace TRIGGER TI_Ecoles
+BEFORE INSERT
+ON Ecoles
+FOR EACH ROW
+BEGIN
+:New.ID_Ecole := Seq_Ecoles.nextval;
+:New.Nom := Initcap(:New.nom);
+:New.Adresse := Initcap(:New.Adresse);
+:New.Ville := Initcap(:New.Ville);
+:New.Code_Postal := UPPER(:New.Code_Postal);
+:New.Contact := Initcap(:New.Contact);
+:New.Role_Contact := Initcap(:New.Role_Contact);
+END TI_Ecoles;
+
+
+--Trigger insert Table Postes_Budgetaires
+--
+/
+create or replace TRIGGER TI_Postes_Budgetaires
+BEFORE INSERT
+ON Postes_Budgetaires
+FOR EACH ROW
+BEGIN
+:New.ID_Poste := Seq_Postes_Budgetaires.nextval;
+:New.Nom_Poste := Initcap(:New.Nom_Poste);
+:New.Depense := Upper(:New.Depense);
+END TI_Postes_Budgetaires;
+
+--Trigger Insert Table Factures
+--
+/
+create or replace TRIGGER TI_Factures
+before insert
+on Factures
+for each row
+BEGIN
+:New.ID_Facture := Seq_Factures.nextval;
+END TI_Factures;
+
+
+--Trigger insert Table Tournois
+--
+/
+create or replace TRIGGER TI_Tournois
+BEFORE INSERT
+ON Tournois
+for each row
+BEGIN
+:New.ID_Tournoi := Seq_Tournois.nextval;
+:New.Ville := Initcap(:New.Ville);
+END TI_Tournois;
+
+---------------------------------
+------- Trigger Niveau 1 --------
+---------------------------------
+
+--Trigger insert Table Prets_Equipements
+--
+/
+create or replace TRIGGER TI_Prets_Equipements
+BEFORE INSERT
+ON Prets_Equipements
+FOR EACH ROW
+BEGIN
+:New.ID_Pret := Seq_Prets_Equipements.nextval;
+END TI_Prets_Equipements;
+
+
+
+--Trigger Insert Table Joueurs_Blessures
+--
+/
+create or replace TRIGGER Ti_Joueurs_Blessures
+BEFORE INSERT
+ON Joueurs_Blessures
+for each row
+BEGIN
+:New.ID_Joueur_Blessure := Seq_Joueurs_Blessures.nextval;
+:New.Nom_Blessure := Initcap(:New.Nom_Blessure);
+END Ti_Joueurs_Blessures;
+
+--Trigger Insert Table Joueurs_Allergies
+--
+/
+create or replace TRIGGER Ti_Joueurs_Allergies
+BEFORE INSERT
+on Joueurs_Allergies
+for each row
+BEGIN
+:New.ID_Joueur_Allergie := Seq_Joueurs_Allergies.nextval;
+:New.Nom_Allergie := Initcap(:New.Nom_Allergie);
+END Ti_Joueurs_Allergies;
+
+--Trigger Insert Table Joueurs_MÃ©dicaments
+--
+/
+create or replace TRIGGER Ti_Joueurs_Medicaments
+BEFORE INSERT
+ON Joueurs_Medicaments
+FOR EACH ROW
+BEGIN
+:New.ID_Joueur_Medicament := Seq_Joueurs_Medicaments.nextval;
+:New.Nom_Medicament := InitCap(:New.Nom_Medicament);
+:New.Posologie := InitCap(:New.Posologie);
+END Ti_Joueurs_Medicament;
+
+--Trigger Insert Table Dispos_Entraineurs
+--
+/
+create or replace TRIGGER TI_Dispos_Entraineurs
+BEFORE INSERT
+ON Dispos_Entraineurs
+FOR EACH ROW
+BEGIN
+:New.ID_Dispo_Entraineur := Seq_Dispos_Entraineurs.nextval;
+:New.Jour := Initcap(:New.Jour);
+END TI_Dispos_Entraineurs;
+
+--Trigger Insert Table Recompenses_Entraineurs
+--
+/
+create or replace TRIGGER TI_Recompenses_Entraineurs
+BEFORE INSERT
+ON Recompenses_Entraineurs
+FOR EACH ROW
+BEGIN
+:New.ID_Recompense_Entraineur := Seq_Recompenses_Entraineurs.nextval;
+END TI_Recompenses_Entraineurs;
+
+--Trigger Insert Table Personnes
+--
+/
+create or replace TRIGGER TI_Personnes
+BEFORE INSERT
+ON Personnes
+FOR EACH ROW
+BEGIN
+:New.ID_Personne := Seq_Personnes.nextval;
+:New.Nom := Initcap(:New.Nom);
+:New.Prenom := Initcap(:New.Prenom);
+:New.Adresse := Initcap(:New.Adresse);
+:New.Ville := Initcap(:New.Ville);
+:New.Code_Postal := Initcap(:New.Code_Postal);
+:New.Eligible_Impot := Initcap(:New.Eligible_Impot);
+END TI_Personnes;
+
+--Trigger Insert Table Personnes_Joueurs
+--
+/
+create or replace TRIGGER TI_Personnes_Joueurs
+BEFORE INSERT
+ON Personnes_Joueurs
+FOR EACH ROW
+BEGIN
+:New.Role_Personne := Initcap(:New.Role_Personne);
+:New.Contact_Urgence := Initcap(:New.Contact_Urgence);
+END TI_Personnes_Joueurs;
+
+--Trigger insert Table Equipes
+--
+/
+create or replace TRIGGER TI_Equipes
+BEFORE INSERT
+ON Equipes
+FOR EACH ROW
+BEGIN
+:New.ID_Equipe := Seq_Equipes.nextval;
+:New.Nom := Initcap(:New.Nom);
+:New.Type_Equipe := Initcap(:New.Type_Equipe);
+END TI_Equipes;
+
+--Trigger Insert Table Gyms
+--
+/
+create or replace TRIGGER TI_Gyms
+BEFORE INSERT
+ON Gyms
+FOR EACH ROW
+BEGIN
+:New.ID_Gym := Seq_Gyms.nextval;
+:New.Nom := Initcap(:New.Nom);
+END TI_Gyms;
+
+--Trigger Insert Table Transactions
+--
+/
+create or replace TRIGGER TI_Transactions
+BEFORE INSERT
+ON Transactions
+FOR EACH ROW
+BEGIN
+:New.ID_Transaction := Seq_Transactions.nextval;
+:New.Nom_Transaction := Initcap(:New.Nom_Transaction);
+:New.Mode_Paiement := Initcap(:New.Mode_Paiement);
+:New.Paye := Initcap(:New.Paye);
+END TI_Transactions;
+---------------------------------
+------- Trigger Niveau 2 --------
+---------------------------------
+
+--Trigger insert Table Personnes_Joueurs
+--
+/
+create or replace TRIGGER TI_Personnes_Joueurs
+BEFORE INSERT
+ON Personnes_Joueurs
+for each row
+BEGIN
+:New.ID_Personne_Joueur := Seq_Personnes_Joueurs.nextval;
+:New.Role_Personne := Initcap(:New.Role_Personne);
+:New.Contact_Urgence := UPPER(:NEW.Contact_Urgence);
+END TI_Joueurs_Personne;
+
+--Trigger insert Table Utilisateurs
+--
+/
+
+create or replace 
+trigger ti_utilisateurs 
+  before insert on utilisateurs 
+  for each row
+declare 
+v_nom varchar2(50);
+begin 
+  select Seq_Utilisateurs.nextval into :new.id_utilisateur from dual; 
+  
+  if (:new.nom_utilisateur is not null) then  
+  :new.nom_utilisateur := upper(:new.nom_utilisateur);
+  insert into apex_access_control values (apex_access_control_seq.nextval, :new.nom_utilisateur, 'Admin', 1, 'AP0519', sysdate, null, null);
+  else
+    select distinct j.nom into v_nom 
+    from personnes p,personnes_joueurs pj,joueurs j
+    where :new.id_personne = p.id_personne and 
+          p.id_personne = pj.id_personne and 
+          pj.id_joueur = j.id_joueur;
+    :new.nom_utilisateur := pck_abbtr.composer_username(v_nom);
+    
+    insert into apex_access_control values (apex_access_control_seq.nextval, :new.nom_utilisateur, 'View', 1, 'AP0519', sysdate, null, null);
+  end if;
+  end ti_utilisateurs;       
+--Trigger update Table utilisateurs
+--
+/
+create or replace trigger  tu_utilisateurs 
+  before update on utilisateurs 
+  for each row 
+begin 
+  :new.nom_utilisateur := upper(:new.nom_utilisateur); 
+  if :new.mot_de_passe is not null then 
+    :new.mot_de_passe := :new.mot_de_passe;
+    else 
+    :new.mot_de_passe := :old.mot_de_passe; 
+  end if; 
+end tu_utilisateurs; 
+--Trigger delete Table utilisateurs
+--
+/
+create or replace 
+trigger TD_Utilisateurs
+before delete 
+on Utilisateurs
+for each row
+begin
+delete from apex_access_control where :old.nom_utilisateur = admin_username;
+end TD_Utilisateurs;
+
+--Trigger insert Table Apex_access_setup
+--
+/
+create or replace trigger  ti_apex_access_setup 
+before insert or update on apex_access_setup 
+for each row
+begin
+if inserting and :new.id is null then
+select apex_access_control_seq.nextval into :new.id from dual;
+end if;
+if :new.application_id is null then
+:new.application_id := v('APP_ID');
+end if;
+end ti_apex_access_setup;
+
+--Trigger insert Table Apex_access_control
+--
+/
+create or replace trigger ti_apex_access_control 
+  before insert or update on apex_access_control
+  for each row
+begin
+    if inserting and :new.id is null then
+        select apex_access_control_seq.nextval into :new.id from dual;
+    end if;
+    if inserting then
+        :new.created_by := v('USER');
+        :new.created_on := sysdate;
+    end if;
+    if updating then
+        :new.updated_by := v('USER');
+        :new.updated_on := sysdate;
+    end if;
+end ti_apex_access_control; 
+
+-- Trigger Insert Table Equipes_Entraineurs
+--
+/
+create or replace TRIGGER TI_Equipes_Entraineurs
+BEFORE INSERT
+ON Equipes_Entraineurs
+FOR EACH ROW
+BEGIN
+:New.ID_Equipe_Entraineur := Seq_Equipes_Entraineurs.nextval;
+:New.Type_Entraineur := Initcap(:New.Type_Entraineur);
+END TI_Equipes_Entraineurs;
+
+-- Trigger Insert Table Equipes_Tournois
+--
+/
+create or replace TRIGGER TI_Equipes_Tournois
+BEFORE INSERT
+ON Equipes_Tournois
+FOR EACH ROW
+BEGIN
+:New.ID_Equipe_Tournoi := Seq_Equipes_Tournois.nextval;
+END TI_Equipes_Tournois;
+/
+--Trigger insert Table Recus_Impots
+--
+
+create or replace TRIGGER TI_Recus_Impot
+BEFORE INSERT
+ON Recus_Impot
+for each row
+BEGIN
+:New.ID_Recu := Seq_Recus_Impots.nextval;
+END TI_Recus_Impots;
+
+--Trigger insert Table Pratiques
+--
+/
+create or replace TRIGGER TI_Pratiques
+BEFORE INSERT
+ON Pratiques
+for each row
+BEGIN
+:New.ID_Pratique := Seq_Pratiques.nextval;
+:New.Jour := Initcap(:New.Jour);
+END TI_Recus_Impots;
+
+--Trigger insert Table dispos_gyms
+--
+/
+create or replace TRIGGER TI_Dispos_Gyms
+BEFORE INSERT
+ON Dispos_Gyms
+FOR EACH ROW
+BEGIN
+:New.ID_Dispo_Gym := Seq_Dispos_Gyms.nextval;
+:New.Jour := Initcap(:New.Jour);
+END TI_Dispos_Gyms;
+
+--Trigger insert Table Inscriptions
+--
+/
+create or replace TRIGGER TI_Inscriptions
+BEFORE INSERT
+ON Inscriptions
+for each row
+BEGIN
+:New.ID_Inscription := Seq_Inscriptions.nextval;
+END TI_Inscriptions;
+
+---------------------------------
+------- Trigger Niveau 3 --------
+---------------------------------
+
+--Trigger insert Table Recipiendaires 
+--
+/
+create or replace TRIGGER TI_Recipiendaires
+BEFORE INSERT
+ON Recipiendaires
+for each row
+BEGIN
+:New.ID_Recipiendaire := Seq_Recipiendaires.nextval;
+:New.Titre := Initcap(:New.Titre);
+END TI_Recipiendaires;
