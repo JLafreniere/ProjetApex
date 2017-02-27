@@ -1,0 +1,427 @@
+DECLARE
+f number;
+BEGIN
+
+    FOR f IN (SELECT sequence_name FROM user_sequences) 
+    loop
+      execute immediate 'drop sequence "'||f.sequence_name||'"';
+    end loop;
+    
+    FOR f IN (SELECT table_name FROM user_tables) 
+    loop
+      execute immediate 'drop table '||f.table_name||' cascade constraint';
+    end loop;    
+end;
+
+Create Sequence Seq_Transactions Maxvalue 99999 nocycle;
+Create Sequence Seq_Camisoles Maxvalue 99999 nocycle;
+Create Sequence Seq_Categories Maxvalue 99999 nocycle;
+Create Sequence Seq_Dispos_Gyms Maxvalue 99999 nocycle;
+Create Sequence Seq_Dispos_Entraineurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Ecoles Maxvalue 99999 nocycle;
+Create Sequence Seq_Entraineurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Equipes_Tournois Maxvalue 99999 nocycle;
+Create Sequence Seq_Equipes Maxvalue 99999 nocycle;
+Create Sequence Seq_Equipes_Entraineurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Factures Maxvalue 99999 nocycle;
+Create Sequence Seq_Gyms Maxvalue 99999 nocycle;
+Create Sequence Seq_Inscriptions Maxvalue 99999 nocycle;
+Create Sequence Seq_Inventaires Maxvalue 99999 nocycle;
+Create Sequence Seq_Joueurs_Medicaments Maxvalue 99999 nocycle;
+Create Sequence Seq_Joueurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Joueurs_Allergies Maxvalue 99999 nocycle;
+Create Sequence Seq_Joueurs_Blessures Maxvalue 99999 nocycle;
+Create Sequence Seq_Personnes Maxvalue 99999 nocycle; 
+Create Sequence Seq_Personnes_Joueurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Postes_Budgetaires Maxvalue 99999 nocycle;
+Create Sequence Seq_Pratiques Maxvalue 99999 nocycle;
+Create Sequence Seq_Recompenses_Entraineurs Maxvalue 99999 nocycle;
+Create Sequence Seq_Prets_Equipements Maxvalue 99999 nocycle;
+Create Sequence Seq_Recipiendaires Maxvalue 99999 nocycle;
+Create Sequence Seq_Recus_Impots Maxvalue 99999 nocycle;
+Create Sequence Seq_Shorts Maxvalue 99999 nocycle;
+Create Sequence Seq_Tournois Maxvalue 99999 nocycle;
+create sequence Seq_utilisateurs Maxvalue 99999 nocycle;
+create sequence apex_access_setup_seq;
+create sequence apex_access_control_seq;
+
+
+CREATE TABLE Camisoles (
+ID_Camisole number(5) primary key,
+No_Camisole number(2),
+Categorie_Age varchar2(10),
+Sexe char(1),
+Couleur varchar2(50),
+Taille varchar2(30)
+);
+
+
+CREATE TABLE Shorts (
+ID_Short number(5) primary key,
+Taille varchar2(30),
+Quantite number(3)
+);
+
+
+
+CREATE TABLE Joueurs (
+ID_Joueur number(5) primary key,
+Nom varchar2(50),
+Prenom varchar2(50),
+Sexe char(1),
+Adresse varchar2(100),
+Ville varchar2(75),
+Code_Postal char(6),
+Date_naissance date,
+Assurance_Maladie char(12),
+Groupe_Sanguin varchar(3),
+Diabete char(1),
+Epilepsie char(1),
+Asthme_Pompe char(1),
+Auto_Administration char(1),
+Infos_Sante_Supplementaires varchar2(255)
+
+);
+
+
+CREATE TABLE Categories(
+ID_Categorie number(5) primary key,
+Nom varchar2(50)
+);
+
+
+
+CREATE TABLE Ecoles(
+ID_Ecole number(5) primary key,
+Nom varchar2(100),
+Adresse varchar2(100),
+Ville varchar2(75),
+Code_Postal char(6),
+Telephone char(10),
+Contact varchar2(100),
+Role_Contact varchar2(50),
+Cell_Contact char(10)
+);
+
+
+CREATE TABLE Postes_Budgetaires(
+ID_Poste number(5) primary key,
+Nom_Poste varchar2(75),
+Depense char(1)
+);
+
+
+CREATE TABLE Inventaires(
+ID_Inventaire number(5) primary key,
+Objet varchar2(75),
+Couleur varchar2(35),
+Quantite number(4)
+);
+
+
+
+CREATE TABLE Factures (
+ID_Facture number(5) primary key,
+Date_Facture date,
+Photocopie blob,
+MimeType varchar2(255),
+FileName varchar2(255),
+ID_Transaction number(5),
+CONSTRAINT FK_ID_transaction -- 
+    FOREIGN KEY (ID_Transaction)
+    REFERENCES Transactions (ID_Transaction)
+);
+
+--PAS D'INSERT--
+
+CREATE TABLE Tournois(
+ID_Tournoi number(5),
+Ville varchar2(75),
+Date_Debut date,
+Date_Fin Date,
+Montant_Inscription number(5,2)
+);
+
+
+CREATE TABLE Entraineurs(
+ID_Entraineur number(5) primary key,
+Nom varchar2(50),
+Prenom varchar2(50),
+Date_Naissance date,
+NAS number(9),
+Fin_Service date,
+Telephone char(10),
+Adresse varchar2(100),
+Ville varchar2(75),
+Code_Postal char(6)
+
+);
+
+
+
+----- RELATION DEGRÉ 1 ---------------
+
+CREATE TABLE Transactions (
+ID_Transaction number(5) primary key,
+Montant number(5,2),
+Nom_Transaction varchar2(150),
+Date_Transaction date,
+Paye char(1),
+Poste_Budgetaire varchar2(50),
+Mode_Paiement varchar2(50),
+
+);
+
+
+
+CREATE TABLE Gyms(
+ID_Gym number(5) primary key,
+ID_Ecole number(5),
+Nom varchar2(100),
+CONSTRAINT FK_ID_ECOLE -- 
+    FOREIGN KEY (ID_Ecole)
+    REFERENCES Ecoles (ID_Ecole)
+);
+
+CREATE TABLE Equipes(
+ID_Equipe number(5) primary key,
+Nom varchar2(25),
+ID_Categorie number(5),
+ID_Ecole number(5),
+Type_Equipe varchar2(25),
+Montant_Inscription number(5, 2),
+CONSTRAINT FK_ID_CATEGORIES_EQUIPES -- 
+    FOREIGN KEY (ID_Categorie)
+    REFERENCES Categories (ID_Categorie),
+    CONSTRAINT FK_ID_ECOLE_EQUIPE -- 
+    FOREIGN KEY (ID_Ecole)
+    REFERENCES Ecoles (ID_Ecole)
+);
+
+CREATE TABLE Joueurs_Medicaments(
+ID_Joueur_Medicament number(5) primary key,
+Nom_Medicament varchar2(75),
+Posologie varchar2(175),
+ID_Joueur number(5),
+CONSTRAINT FK_ID_JOUEURS_MEDICAMENTS -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+CREATE TABLE Joueurs_Blessures(
+ID_Joueur_Blessure number(5) primary key,
+Nom_Blessure varchar2(75),
+Date_Blessure date,
+ID_Joueur number(5),
+CONSTRAINT FK_ID_JOUEURS_BLESSURES -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+CREATE TABLE Joueurs_Allergies(
+ID_Joueur_Allergie number(5) primary key,
+Nom_Allergie varchar2(75),
+ID_Joueur number(5),
+CONSTRAINT FK_ID_JOUEURS_ALLERGIES -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+CREATE TABLE Personnes(
+ID_Personne number(5) primary key,
+Nom varchar2(50),
+Prenom varchar2(50),
+Telephone1 char(10),
+Telephone2 char(10),
+NAS char(9),
+Adresse varchar2(100),
+Ville varchar2(50),
+Code_Postal char(6),
+Eligible_Impot char(1)
+);
+
+CREATE TABLE Prets_Equipements(
+ID_Pret number(5),
+Date_Pret date,
+ID_Camisole number(5),
+ID_Short number(5),
+Date_Remise_Prevue date,
+Date_Reception date,
+ID_Joueur number(5),
+CONSTRAINT FK_ID_CAMISOLE_PRETS -- 
+    FOREIGN KEY (ID_Camisole)
+    REFERENCES Camisoles (ID_Camisole),
+    CONSTRAINT FK_ID_SHORTS_PRETS -- 
+    FOREIGN KEY (ID_Short)
+    REFERENCES Shorts (ID_Short),
+    CONSTRAINT FK_ID_JOUEURS_PRETS -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur)
+);
+
+CREATE TABLE Recus_Impot(
+ID_Recu number(5),
+ID_Personne number(5),
+Montant number(5,2),
+Annee number(4,0),
+    CONSTRAINT FK_ID_PERSONNE_RECUS -- 
+    FOREIGN KEY (ID_Personne)
+    REFERENCES Personnes (ID_Personne)
+);
+
+
+
+CREATE TABLE Dispos_Entraineurs(
+ID_Dispo_Entraineur number(5),
+Jour number(1),
+Debut number(4,2),
+Fin number(4,2),
+ID_Entraineur number(5),
+    CONSTRAINT FK_ID_ENTRAINEUR_DISPOS -- 
+    FOREIGN KEY (ID_Entraineur)
+    REFERENCES Entraineurs (ID_Entraineur)
+);
+
+---------------------------- DEGRÉ 2------------------------
+
+CREATE TABLE Inscriptions(
+ID_Inscription number(5) primary key,
+ID_Joueur number(5),
+ID_Equipe number(5),
+Saison number(5), -- FOREIGN KEY???
+ID_Transaction number(5),
+    CONSTRAINT FK_ID_INSCR_Joueurs -- 
+    FOREIGN KEY (ID_Joueur)
+    REFERENCES Joueurs (ID_Joueur),
+    
+    CONSTRAINT FK_ID_INSCR_Equipes -- 
+    FOREIGN KEY (ID_EQUIPE)
+    REFERENCES Equipes (ID_Equipe),
+    
+    CONSTRAINT FK_ID_INSCR_Transactions -- 
+    FOREIGN KEY (ID_Transaction)
+    REFERENCES Transactions (ID_Transaction)
+
+);
+
+CREATE TABLE Equipes_Tournois(
+ID_Equipe_Tournoi number(5) primary key,
+ID_Equipe number(5),
+ID_Tournoi number(5),
+ID_Transaction number(5),
+    CONSTRAINT FK_ID_EQTOUR_EQUIPE-- 
+    FOREIGN KEY (ID_EQUIPE)
+    REFERENCES EQUIPES (ID_EQUIPE),
+        CONSTRAINT FK_ID_EQTOUR_TRANS-- 
+    FOREIGN KEY (ID_TRANSACTION)
+    REFERENCES TRANSACTIONS (ID_TRANSACTION)
+);
+
+
+CREATE TABLE Pratiques(
+ID_Pratique number(5) primary key,
+ID_Equipe number(5),
+ID_Gym number(5),
+Jour number(1),
+Heure_Debut number(4,2),
+Heure_Fin number(4,2),
+Date_Pratique DATE,
+    CONSTRAINT FK_ID_PRATIQUE_EQUIPE-- 
+    FOREIGN KEY (ID_EQUIPE)
+    REFERENCES EQUIPES (ID_EQUIPE),
+    CONSTRAINT FK_ID_PRATIQUE_GYM-- 
+    FOREIGN KEY (ID_GYM)
+    REFERENCES GYMS (ID_GYM)
+);
+
+CREATE TABLE Dispos_Gyms(
+ID_Dispo_Gym number(5) primary key,
+ID_Gym number(5),
+Jour number(1),
+Heure_Debut number(4,2),
+Heure_Fin number(4,2),
+    CONSTRAINT FK_ID_DISPOS_GYM-- 
+    FOREIGN KEY (ID_Gym)
+    REFERENCES Gyms (ID_Gym)
+);
+
+
+CREATE TABLE Equipes_Entraineurs(
+ID_Equipe_Entraineur number(5) primary key,
+Type_Entraineur varchar2(50),
+ID_Equipe number(5),
+ID_Entraineur number(5),
+
+    CONSTRAINT FK_ID_EQENT_Equipes -- 
+    FOREIGN KEY (ID_EQUIPE)
+    REFERENCES Equipes (ID_Equipe),
+    CONSTRAINT FK_ID_EQENT_Ent -- 
+    FOREIGN KEY (ID_Entraineur)
+    REFERENCES Entraineurs (ID_Entraineur)
+);
+
+CREATE TABLE Recipiendaires(
+ID_Recipiendaire number(5) primary key,
+Titre varchar2(75),
+ID_INSCRIPTION number(5),
+    CONSTRAINT FK_ID_REC_INSCR-- 
+    FOREIGN KEY (ID_INSCRIPTION)
+    REFERENCES Inscriptions (ID_INSCRIPTION)
+);
+
+CREATE TABLE Personnes_Joueurs(
+ID_Personne_Joueur number(5) primary key,
+ID_Personne number(5),
+ID_Joueur number(5),
+Role_Personne varchar2(50),
+Contact_Urgence varchar2(75),
+CONSTRAINT FK_ID_PERSJOU_PERS-- 
+    FOREIGN KEY (ID_PERSONNE)
+    REFERENCES PERSONNES (ID_PERSONNE),
+    CONSTRAINT FK_ID_PERSJOU_JOUEUR-- 
+    FOREIGN KEY (ID_JOUEUR)
+    REFERENCES JOUEURS (ID_JOUEUR)
+);
+
+create table utilisateurs(
+id_utilisateur NUMBER(5)  PRIMARY KEY,
+nom_utilisateur varchar2(50),
+mot_de_passe varchar2(255),
+id_personne number(5),
+CONSTRAINT FK_user_personnes 
+    FOREIGN KEY (ID_Personne)
+    REFERENCES Personnes (ID_Personne));
+
+create table  apex_access_setup (
+ID NUMBER constraint pk_apex_access_setup primary key, 
+APPLICATION_MODE VARCHAR2(255), 
+APPLICATION_ID NUMBER constraint un_apex_access_setup_id unique);
+
+create table  apex_access_control (
+id NUMBER constraint pk_apex_access_control primary key,
+ADMIN_USERNAME VARCHAR2(255), 
+ADMIN_PRIVILEGES VARCHAR2(255), 
+SETUP_ID NUMBER constraint fk_apex_access_control_set references apex_access_setup(id), 
+CREATED_BY VARCHAR2(255), 
+CREATED_ON DATE, 
+UPDATED_ON DATE, 
+UPDATED_BY VARCHAR2(255),
+   constraint un_apex_access_control unique(admin_username, setup_id));
+
+
+
+CREATE TABLE RECOMPENSES_ENTRAINEURS(
+ID_RECOMPENSE_ENTRAINEUR number(5) primary key,
+ID_Entraineur number(5),
+Montant number(5,2),
+Date_Recompense date,
+    CONSTRAINT FK_ID_RECENT_ENT-- 
+    FOREIGN KEY (ID_ENTRAINEUR)
+    REFERENCES ENTRAINEURS (ID_ENTRAINEUR)
+);
+
+ALTER TABLE inscriptions
+DISABLE CONSTRAINT FK_ID_INSCR_TRANSACTIONS;
+
+
+
