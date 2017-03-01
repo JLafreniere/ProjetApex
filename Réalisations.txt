@@ -1,0 +1,104 @@
+Page 1	- Accueil - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Travail que j'ai effectué sur cette page
+	Création de la page
+	Rapport permettant de voir les informations sur les enfants de l'utilisateur actuel
+	Rapport permettant de voir les futures pratiques des enfants de l'utilisateur actuel
+	Rapport permettant de voir les tournois auxquels l'équipe des enfants de l'utilisateur sont inscritse	Rapport permettant de voir les transactions associées à l'utilisateur actuel
+
+Page 230 - Rapport Entraineurs - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	-Création de la page
+	-Formattage des données
+
+Page 240 - Entraineurs - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Création de la page
+	Validations
+	Champs Obligatoires
+	Cacher les régions pivot lors de la création (ces régions deviennent disponible lorsque l'entrée dans la table joueur existe déjà, lors de la modification)
+	Régions Disponibilité et récompenses
+	Formattage des données dans les rapports
+
+Page 270 - Personnes - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Formattage du rapport (checkbox sur les champs ayant deux valeurs possibles)
+
+
+Page 280 - Formulaire Personnes - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi sauf la génération de reçus d'impôts (Christophe)
+	Création de la page
+	Validations
+	Champs Obligatoires
+	Cacher la région Reçu Impot lors de la création
+
+Page 300 - Joueurs - Responsable: Michaël Trahan
+	Travail que j'ai effectué sur cette page
+	Cacher les régions pivot lors de la création (ces régions deviennent disponible lorsque l'entrée dans la table joueur existe déjà, lors de la modification)
+
+Page 310 - Rapport Catégories - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Formattage du rapport
+
+Page 320 - Formulaire Catégories - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Champs Obligatoires
+
+Page 330 - Écoles - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Formattage du rapport
+
+Page 340 - Formulaire Écoles - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Création de la page
+	Validations
+	Champs Obligatoires
+	Région Gym et actions dynamiques
+	
+Page 380 - Formulaire Équipes- Responsable: Jonathan Lafrenière, Christophe Bélanger
+	Cette page a été faite par moi et Christophe
+	Travail que j'ai effectué sur cette page
+	Création de la page
+	Validations
+	Champs Obligatoires
+	Cacher les régions pivots lors de la création (ces régions ne s'affichent que si l'utilisateur est en mode modification)
+	Inscription d'un joueur à l'équipe, rapports des joueurs inscrits par saison
+	Inscription de l'équipe à un tournoi
+	Assignation et retrait d'entraineurs à l'équipe
+	Génération d'une transaction lorsqu'un utilisateur est inscrit ou lorsqu'une équipe est inscrite à un tournoi
+
+Page 400 - Tournois - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Formattage du rapport
+
+Page 410 - Formulaire Tournois - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Création de la page
+	Validations
+	Champs Obligatoires
+
+Page 420 - Transactions - Responsable: Jonathan Lafrenière, Christophe Bélanger
+	La page a été créée par Christophe et j'ai fait le formattage
+	Formattage du rapport (checkbox sur les champs ayant deux valeurs possibles)
+
+Page 500 - Gyms - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Création de la page
+
+Page 560 - Formulaire Inscription - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Travail que j'ai effectué sur cette page
+	Création de la page
+	Création d'un rapport permettant d'afficher la composition des différentes équipes lors des différentes saisons
+
+Page 590 - Rapport Récipiendaires - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Création de la page
+
+Page 600 - Formulaire Récipiendaires - Responsable: Jonathan Lafrenière
+	Tout le travail sur cette page a été fait par moi
+	Création de la page
+	Champs Obligatoires
+
+
+
