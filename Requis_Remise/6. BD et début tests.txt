@@ -1012,13 +1012,22 @@ END TI_Dispos_Gyms;
 
 --Trigger insert Table Inscriptions
 --
-
-create or replace TRIGGER TI_Inscriptions
+create or replace 
+trigger TI_Inscriptions
 BEFORE INSERT
 ON Inscriptions
 for each row
+DECLARE
+v_joueur varchar2(200);
+v_montant number;
+v_equipe varchar2(100);
 BEGIN
-New.ID_Inscription = Seq_Inscriptions.nextval;
+:New.ID_Inscription := Seq_Inscriptions.nextval;
+select nom||', '||prenom into v_joueur from joueurs where id_joueur = :new.id_joueur;
+select montant_inscription into v_montant from equipes where id_equipe = :new.id_equipe;
+select nom into v_equipe from equipes where id_equipe = :new.id_equipe;
+
+insert into transactions values(null, v_montant, 'INSCRIPTION JOUEUR '||v_joueur||' '||v_equipe, sysdate,null,  2, 'Indéterminé');
 END TI_Inscriptions;
 
 ---------------------------------
